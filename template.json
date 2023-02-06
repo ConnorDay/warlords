@@ -1,0 +1,92 @@
+{
+    "Actor": {
+        "types": ["character", "npc"],
+        "templates": {
+            "base": {
+                "health": {
+                    "value": 10,
+                    "max": 10,
+                    "bonus": 0
+                },
+                "power": {
+                    "value": 5,
+                    "max": 5,
+                    "bonus": 0
+                },
+                "biography": ""
+            }
+        },
+        "character": {
+            "templates": ["base"],
+            "attributes": {
+                "level": {
+                    "value": 1
+                }
+            },
+            "abilities": {
+                "str": {
+                    "value": 0,
+                    "bonus": 0
+                },
+                "dex": {
+                    "value": 0,
+                    "bonus": 0
+                },
+                "con": {
+                    "value": 0,
+                    "bonus": 0
+                },
+                "int": {
+                    "value": 0,
+                    "bonus": 0
+                },
+                "wis": {
+                    "value": 0,
+                    "bonus": 0
+                }
+            },
+            "saves": {
+                "fort": {
+                    "value": 0,
+                    "ability": "con",
+                    "bonus": 0
+                },
+                "refl": {
+                    "value": 0,
+                    "ability": "dex",
+                    "bonus": 0
+                },
+                "will": {
+                    "value": 0,
+                    "ability": "wis",
+                    "bonus": 0
+                }
+            }
+        },
+        "npc": {
+            "templates": ["base"],
+            "cr": 0
+        }
+    },
+    "Item": {
+        "types": ["item", "feature", "spell"],
+        "templates": {
+            "base": {
+                "description": ""
+            }
+        },
+        "item": {
+            "templates": ["base"],
+            "quantity": 1,
+            "weight": 0,
+            "formula": "d20 + @str.mod + ceil(@lvl / 2)"
+        },
+        "feature": {
+            "templates": ["base"]
+        },
+        "spell": {
+            "templates": ["base"],
+            "spellLevel": 1
+        }
+    }
+}

@@ -1,0 +1,34 @@
+{
+    "WARLORDS.AbilityStr": "Strength",
+    "WARLORDS.AbilityCon": "Constitution",
+    "WARLORDS.AbilityDex": "Dexterity",
+    "WARLORDS.AbilityInt": "Intellect",
+    "WARLORDS.AbilityWis": "Wisdom",
+
+    "WARLORDS.AbilityStrAbbr": "str",
+    "WARLORDS.AbilityConAbbr": "con",
+    "WARLORDS.AbilityDexAbbr": "dex",
+    "WARLORDS.AbilityIntAbbr": "int",
+    "WARLORDS.AbilityWisAbbr": "wis",
+
+    "WARLORDS.SaveFort": "Fortitude",
+    "WARLORDS.SaveRefl": "Reflex",
+    "WARLORDS.SaveWill": "Will",
+
+    "WARLORDS.SaveFortAbbr": "fort",
+    "WARLORDS.SaveReflAbbr": "refl",
+    "WARLORDS.SaveWillAbbr": "will",
+
+    "WARLORDS.MaxHealth": "Max Health",
+    "WARLORDS.CurrentHealth": "Current Health",
+
+    "WARLORDS.MaxPower": "Max Power",
+    "WARLORDS.CurrentPower": "Current Power",
+
+    "WARLORDS.EffectCreate": "Create Effect",
+    "WARLORDS.EffectToggle": "Toggle Effect",
+    "WARLORDS.EffectEdit": "Edit Effect",
+    "WARLORDS.EffectDelete": "Delete Effect",
+
+    "WARLORDS.Add": "Add"
+}
