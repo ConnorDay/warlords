@@ -68,13 +68,13 @@ WARLORDS.skills = {
 };
 
 WARLORDS.activeEffectChanges = {
-    "data.abilities.str.bonus": "WARLORDS.AbilityStr",
-    "data.abilities.dex.bonus": "WARLORDS.AbilityDex",
-    "data.abilities.con.bonus": "WARLORDS.AbilityCon",
-    "data.abilities.int.bonus": "WARLORDS.AbilityInt",
-    "data.saves.fort.bonus": "WARLORDS.SaveFort",
-    "data.saves.refl.bonus": "WARLORDS.SaveRefl",
-    "data.saves.will.bonus": "WARLORDS.SaveWill",
-    "data.health.bonus": "WARLORDS.MaxHealth",
-    "data.power.bonus": "WARLORDS.MaxPower",
+    "system.abilities.str.bonus": "WARLORDS.AbilityStr",
+    "system.abilities.dex.bonus": "WARLORDS.AbilityDex",
+    "system.abilities.con.bonus": "WARLORDS.AbilityCon",
+    "system.abilities.int.bonus": "WARLORDS.AbilityInt",
+    "system.saves.fort.bonus": "WARLORDS.SaveFort",
+    "system.saves.refl.bonus": "WARLORDS.SaveRefl",
+    "system.saves.will.bonus": "WARLORDS.SaveWill",
+    "system.health.bonus": "WARLORDS.MaxHealth",
+    "system.power.bonus": "WARLORDS.MaxPower",
 };
