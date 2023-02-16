@@ -80,9 +80,14 @@ export class WarlordsActorSheet extends ActorSheet {
             v.label = game.i18n.localize(CONFIG.WARLORDS.abilities[k]) ?? k;
         }
 
-        // Handle savs
+        // Handle saves
         for (let [k, v] of Object.entries(context.system.saves)) {
             v.label = game.i18n.localize(CONFIG.WARLORDS.saves[k]) ?? k;
+        }
+
+        // Handle skills
+        for (let [k, v] of Object.entries(context.system.skills)) {
+            v.label = game.i18n.localize(CONFIG.WARLORDS.skills[k]) ?? k;
         }
     }
 
@@ -235,6 +240,7 @@ export class WarlordsActorSheet extends ActorSheet {
                 : "";
             if (dataset.ability !== undefined) {
                 const ability = this.actor.system.abilities[dataset.ability];
+                console.log(ability);
                 ability.aggregate = ability.value + ability.bonus;
             }
             let roll = new Roll(dataset.roll, this.actor.getRollData());

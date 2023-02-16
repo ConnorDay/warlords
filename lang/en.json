@@ -30,5 +30,26 @@
     "WARLORDS.EffectEdit": "Edit Effect",
     "WARLORDS.EffectDelete": "Delete Effect",
 
+    "WARLORDS.SkillAcrobatics": "Acrobatics",
+    "WARLORDS.SkillAlchemy": "Alchemy",
+    "WARLORDS.SkillAnimalHandling": "Animal Handling",
+    "WARLORDS.SkillArcana": "Arcana",
+    "WARLORDS.SkillArmaments": "Armaments",
+    "WARLORDS.SkillAthletics": "Athletics",
+    "WARLORDS.SkillConcentration": "Concentration",
+    "WARLORDS.SkillDevices": "Devices",
+    "WARLORDS.SkillFraud": "Fraud",
+    "WARLORDS.SkillHistory": "History",
+    "WARLORDS.SkillHorsemanship": "Horsemanship",
+    "WARLORDS.SkillInsight": "Insight",
+    "WARLORDS.SkillLegerdemain": "Legerdemain",
+    "WARLORDS.SkillLocalKnowledge": "Local Knowledge",
+    "WARLORDS.SkillMedicine": "Medicine",
+    "WARLORDS.SkillPerception": "Perception",
+    "WARLORDS.SkillPerformance": "Performance",
+    "WARLORDS.SkillSpellcraft": "Spellcraft",
+    "WARLORDS.SkillStealth": "Stealth",
+    "WARLORDS.SkillWildlore": "Wildlore",
+
     "WARLORDS.Add": "Add"
 }

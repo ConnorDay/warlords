@@ -46,6 +46,7 @@
   <nav class="sheet-tabs tabs" data-group="primary">
     {{!-- Default tab is specified in actor-sheet.mjs --}}
     <a class="item" data-tab="overview">Overview</a>
+    <a class="item" data-tab="skills">Skills</a>
     <a class="item" data-tab="description">Description</a>
     <a class="item" data-tab="items">Items</a>
     <a class="item" data-tab="spells">Spells</a>
@@ -77,7 +78,7 @@
             {{#each system.saves as |save key|}}
             <div class="ability flexrow flex-group-center">
               <label for="system.saves.{{key}}.value" class="resource-label rollable flexlarge align-left" data-type="saving throw" data-ability="{{save.ability}}" data-roll="d20+@saves.{{key}}.value + @abilities.{{save.ability}}.aggregate + @saves.{{key}}.bonus" data-label="{{save.label}}">{{save.label}}</label>
-              <input type="text" name="system.save.{{key}}.value" value="{{save.value}}" data-dtype="Number"/>
+              <input type="text" name="system.saves.{{key}}.value" value="{{save.value}}" data-dtype="Number"/>
               <p name="system.saves.{{key}}.bonus" >{{save.bonus}}</p>
             </div>
             {{/each}}
@@ -86,11 +87,14 @@
 
         {{!-- For the main features list, span the right two columns --}}
         <section class="main grid-span-2">
-          {{!-- This is a Handlebars partial. They're stored in the `/parts` folder next to this sheet, and defined in module/helpers/templates.mjs --}}
           {{> "systems/warlords/templates/actor/parts/actor-features.html"}}
         </section>
-
+        
       </section>
+    </div>
+
+    <div class="tab skills" data-group="primary" data-tab="skills">
+      {{> "systems/warlords/templates/actor/parts/actor-skills.html"}}
     </div>
 
     {{!-- Biography Tab --}}

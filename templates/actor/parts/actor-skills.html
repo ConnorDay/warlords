@@ -1,0 +1,14 @@
+<table>
+    <tr class="item flexrow items-header">
+        <th class="item-name">Skill</th>
+        <th class="item-control">Ranks</th>
+        <th class="item-control">Bonus</th>
+    </tr>
+    {{#each system.skills as |skill key|}}
+        <tr class="item flexrow">
+            <td class="rollable" data-type="skill" data-ability="{{skill.ability}}" data-roll="d20+@skills.{{key}}.ranks + @abilities.{{skill.ability}}.aggregate + @skills.{{key}}.bonus" data-label="{{skill.label}}">{{skill.label}}</td>
+            <td class="flex-group-center"><input type="number" name="system.skills.{{key}}.ranks" value="{{skill.ranks}}" data-dtype="Number"/></td>
+            <td class="flex-group-center">{{skill.bonus}}</td>
+        </tr>
+    {{/each}}
+</table>

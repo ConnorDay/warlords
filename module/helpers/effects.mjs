@@ -11,11 +11,6 @@ export function onManageActiveEffect(event, owner) {
         ? owner.effects.get(li.dataset.effectId)
         : null;
 
-    console.log("event: ", event);
-    console.log("owner: ", owner);
-    console.log("a: ", a);
-    console.log("li: ", li);
-    console.log("effect: ", effect);
     switch (a.dataset.action) {
         case "create":
             return owner.createEmbeddedDocuments("ActiveEffect", [

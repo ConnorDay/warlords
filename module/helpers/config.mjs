@@ -44,6 +44,29 @@ WARLORDS.power = {
     current: "WARLORDS.CurrentPower",
 };
 
+WARLORDS.skills = {
+    acrobatics: "WARLORDS.SkillAcrobatics",
+    alchemy: "WARLORDS.SkillAlchemy",
+    animal_handling: "WARLORDS.SkillAnimalHandling",
+    arcana: "WARLORDS.SkillArcana",
+    armaments: "WARLORDS.SkillArmaments",
+    athletics: "WARLORDS.SkillAthletics",
+    concentration: "WARLORDS.SkillConcentration",
+    devices: "WARLORDS.SkillDevices",
+    fraud: "WARLORDS.SkillFraud",
+    history: "WARLORDS.SkillHistory",
+    horsemanship: "WARLORDS.SkillHorsemanship",
+    insight: "WARLORDS.SkillInsight",
+    legerdemain: "WARLORDS.SkillLegerdemain",
+    local_knowledge: "WARLORDS.SkillLocalKnowledge",
+    medicine: "WARLORDS.SkillMedicine",
+    perception: "WARLORDS.SkillPerception",
+    performance: "WARLORDS.SkillPerformance",
+    spellcraft: "WARLORDS.SkillSpellcraft",
+    stealth: "WARLORDS.SkillStealth",
+    wildlore: "WARLORDS.SkillWildlore",
+};
+
 WARLORDS.activeEffectChanges = {
     "data.abilities.str.bonus": "WARLORDS.AbilityStr",
     "data.abilities.dex.bonus": "WARLORDS.AbilityDex",
