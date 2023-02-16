@@ -189,7 +189,7 @@
         },
         "spell": {
             "templates": ["base"],
-            "spellLevel": 1
+            "spellCost": 0
         }
     }
 }
