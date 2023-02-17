@@ -118,3 +118,19 @@
   flex: 0 0 200px;
   padding: 0 8px;
 }
+
+.item-cost {
+  flex: 0 0 60px;
+  padding: 0 8px;
+  display: block;
+}
+
+.item-cost-self {
+  width: 50%;
+  float: left;
+}
+
+.item-cost-target {
+  width: 50%;
+  float: left;
+}

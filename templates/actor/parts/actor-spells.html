@@ -1,5 +1,6 @@
 <ol class="items-list">
-  <li class="item flexrow items-header">
+  <li class="flexrow items-header">
+    <div class="item-cost">Cost</div>
     <div class="item-name">Name</div>
     <div class="item-formula">Description</div>
     <div class="item-controls">
@@ -9,6 +10,14 @@
   {{#each spells as |item i|}}
   <li class="item flexrow" data-item-id="{{item._id}}">
     <div class="item-name flexrow">
+      <div class="item-cost">
+        {{#if item.system.spellCostSelf includeZero = true}}
+        <a class="item-cost-self">{{item.system.spellCostSelf}}</a>
+        {{/if}}
+        {{#if item.system.spellCostTarget includeZero = true}}
+        <a class="item-cost-target">{{item.system.spellCostTarget}}</a>
+        {{/if}}
+      </div>
       <div class="item-image">
         <a class="rollable" data-roll-type="item"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/></a>
       </div>
