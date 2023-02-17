@@ -189,7 +189,8 @@
         },
         "spell": {
             "templates": ["base"],
-            "spellLevel": 1
+            "spellCostSelf": null,
+            "spellCostTarget": 0
         }
     }
 }
