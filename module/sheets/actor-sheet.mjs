@@ -168,6 +168,8 @@ export class WarlordsActorSheet extends ActorSheet {
             item.system.value += parseInt(target.data("amount"));
             item.system.value = Math.max(item.system.value, 0);
             item.system.value = Math.min(item.system.value, item.system.max);
+
+            item.updateSource({ system: item.system });
             this.render();
         });
 
