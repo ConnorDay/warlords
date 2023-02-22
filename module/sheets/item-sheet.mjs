@@ -54,11 +54,10 @@ export class WarlordsItemSheet extends ItemSheet {
         if (actor) {
             actor.items.forEach((item) => {
                 if (item.type == "resource") {
-                    context.resources.push({item:item, selected:item.id == this.item.system.resourceId});
+                    context.resources.push({item:item, selected:item.id == this.item.system.resource.id});
                 }
             })
-        } 
-        console.log(context);
+        }
         return context;
     }
 
@@ -74,9 +73,12 @@ export class WarlordsItemSheet extends ItemSheet {
         // Roll handlers, click handlers, etc. would go here.
         html.find(".resource-list").change((ev) => {
             const val = ev.currentTarget.value;
+            if (val == "") {
+                this.item.system.resourceId = null;
+                return;
+            }
             this.item.system.resourceId = val;
-            this.item.updateSource({ system: this.item.system });
-            console.log(this.item);
+            this.item.update({ system: this.item.system });
         });
     }
 }
