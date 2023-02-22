@@ -118,3 +118,41 @@
   flex: 0 0 200px;
   padding: 0 8px;
 }
+
+.item-cost {
+  flex: 0 0 60px;
+  padding: 0 8px;
+  display: block;
+}
+
+.item-cost-self {
+  width: 50%;
+  float: left;
+  text-align: center;
+}
+
+.item-cost-target {
+  width: 50%;
+  float: left;
+  text-align: center;
+}
+
+.item-resource-value {
+  flex: 0 0 100px;
+  display: flex;
+  flex-direction: row;
+    a {
+      font-size: 12px;
+      vertical-align: middle;
+      text-align: center;
+      margin: 0 6px;
+    }
+}
+
+.item-roll-label {
+  flex: 0;
+  white-space: nowrap;
+}
+.item-roll-input {
+  flex-grow: 1;
+}

@@ -12,6 +12,10 @@ export class WarlordsItem extends Item {
         super.prepareData();
     }
 
+    prepareDerivedData() {
+        super.prepareDerivedData();
+    }
+
     /**
      * Prepare a data object which is passed to any Roll formulas which are created related to this Item
      * @private
@@ -40,7 +44,7 @@ export class WarlordsItem extends Item {
         const label = `[${item.type}] ${item.name}`;
 
         // If there's no roll data, send a chat message.
-        if (!this.system.formula) {
+        if (!this.system.rolls) {
             ChatMessage.create({
                 speaker: speaker,
                 rollMode: rollMode,
@@ -54,15 +58,17 @@ export class WarlordsItem extends Item {
             const rollData = this.getRollData();
 
             // Invoke the roll and submit it to chat.
-            const roll = new Roll(rollData.item.formula, rollData);
+            const attackRoll = new Roll(rollData.item.rolls.attack, rollData);
+            const damageRoll = new Roll(rollData.item.rolls.damage, rollData);
+
             // If you need to store the value first, uncomment the next line.
             // let result = await roll.roll({async: true});
-            roll.toMessage({
+            ChatMessage.create({
                 speaker: speaker,
                 rollMode: rollMode,
                 flavor: label,
+                content: `<p><b>Attack Roll: </b>[[${attackRoll.formula}]]</p><p><b>Damage Roll: </b>[[${damageRoll.formula}]]</p>`,
             });
-            return roll;
         }
     }
 }

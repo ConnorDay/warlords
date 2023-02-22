@@ -1,0 +1,48 @@
+<ol class="items-list">
+    <li class="flexrow items-header">
+        <div class="item-resource-value">Amount</div>
+        <div class="item-name">Name</div>
+        <div class="item-formula">Description</div>
+        <div class="item-controls">
+            <a
+                class="item-control item-create"
+                title="Create item"
+                data-type="spell"
+                ><i class="fas fa-plus"></i> Add spell</a
+            >
+        </div>
+    </li>
+    {{#each resources as |item i|}}
+    <li class="item flexrow" data-item-id="{{item._id}}">
+        <div class="item-name flexrow">
+            <div class="item-resource-value">
+                <a class="item-resource-modifier" data-amount="-1">
+                    <i class="fas fa-minus"></i>
+                </a>
+                {{item.system.value}} / {{item.system.max}}
+                <a class="item-resource-modifier" data-amount="1">
+                    <i class="fas fa-plus"></i>
+                </a>
+            </div>
+            <div class="item-image">
+                <a class="rollable" data-roll-type="item"
+                    ><img
+                        src="{{item.img}}"
+                        title="{{item.name}}"
+                        width="24"
+                        height="24"
+                /></a>
+            </div>
+            <h4>{{item.name}}</h4>
+        </div>
+        <div class="item-controls">
+            <a class="item-control item-edit" title="Edit Item"
+                ><i class="fas fa-edit"></i
+            ></a>
+            <a class="item-control item-delete" title="Delete Item"
+                ><i class="fas fa-trash"></i
+            ></a>
+        </div>
+    </li>
+    {{/each}}
+</ol>

@@ -13,6 +13,11 @@
                     "max": 5,
                     "bonus": 0
                 },
+                "spellPoints": {
+                    "value": 0,
+                    "max": 0,
+                    "bonus": 0
+                },
                 "biography": "",
                 "attributes": {
                     "level": {
@@ -172,7 +177,7 @@
         }
     },
     "Item": {
-        "types": ["item", "feature", "spell"],
+        "types": ["item", "feature", "spell", "resource"],
         "templates": {
             "base": {
                 "description": ""
@@ -182,14 +187,25 @@
             "templates": ["base"],
             "quantity": 1,
             "weight": 0,
-            "formula": "d20 + @str.mod + ceil(@lvl / 2)"
+            "formula": "d20 + @str.mod + ceil(@lvl / 2)",
+            "resourceId": null,
+            "rolls": {
+                "attack": "",
+                "damage": ""
+            }
         },
         "feature": {
             "templates": ["base"]
         },
         "spell": {
             "templates": ["base"],
-            "spellLevel": 1
+            "spellCostSelf": null,
+            "spellCostTarget": 0
+        },
+        "resource": {
+            "templates": ["base"],
+            "max": 0,
+            "value": 0
         }
     }
 }
