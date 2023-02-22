@@ -22,9 +22,9 @@
             use, use both the "grid" and "grid-Ncol" class where "N" can be any
             number from 1 to 12 and will create that number of columns. --}}
             {{#unless system.spellPoints.max}}
-            <div class="resources grid grid-3col">
-            {{else}}
             <div class="resources grid grid-4col">
+            {{else}}
+            <div class="resources grid grid-5col">
             {{/unless}}
                 {{!-- "flex-group-center" is also defined in the _grid.scss file
                 and it will add a small amount of padding, a border, and will
@@ -99,6 +99,16 @@
                     </div>
                 </div>
                 {{/if}}
+
+                <div class="resource flex-group-center">
+                    <label for="system.attack_bonus" class="resource-label">Attack Bonus</label>
+                    <input
+                        type="text"
+                        name="system.attack_bonus"
+                        value="{{system.attack_bonus}}"
+                        data-dtype="Number"
+                    />
+                </div>
 
                 <div class="resource flex-group-center">
                     <label
