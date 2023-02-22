@@ -37,15 +37,12 @@ Hooks.once("init", async function () {
     // Define custom Document classes
     CONFIG.Actor.documentClass = WarlordsActor;
     CONFIG.Item.documentClass = WarlordsItem;
-    console.warn("active effect", CONFIG.ActiveEffect);
-    console.log(ActiveEffectConfig.documentName);
     DocumentSheetConfig.registerSheet(
         ActiveEffect,
         "warlords",
         WarlordsEffectConfigSheet
     );
     CONFIG.ActiveEffect.sheetClasses.warlords = WarlordsEffectConfigSheet;
-    console.warn("active effect", CONFIG.ActiveEffect);
 
     // Register sheet application classes
     Actors.unregisterSheet("core", ActorSheet);
