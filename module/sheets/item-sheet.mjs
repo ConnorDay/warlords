@@ -50,6 +50,9 @@ export class WarlordsItemSheet extends ItemSheet {
         // Add the actor's data to context.data for easier access, as well as flags.
         context.system = itemData.system;
         context.flags = itemData.flags;
+        context.rolls = itemData.collections.rolls;
+
+        console.log(context);
 
         return context;
     }
@@ -62,7 +65,5 @@ export class WarlordsItemSheet extends ItemSheet {
 
         // Everything below here is only needed if the sheet is editable
         if (!this.isEditable) return;
-
-        // Roll handlers, click handlers, etc. would go here.
     }
 }
