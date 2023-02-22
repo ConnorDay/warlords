@@ -103,21 +103,25 @@ export class WarlordsActorSheet extends ActorSheet {
         const gear = [];
         const features = [];
         const spells = [];
+        const resources = [];
 
         // Iterate through items, allocating to containers
         for (let i of context.items) {
             i.img = i.img || DEFAULT_TOKEN;
-            // Append to gear.
-            if (i.type === "item") {
-                gear.push(i);
-            }
-            // Append to features.
-            else if (i.type === "feature") {
-                features.push(i);
-            }
-            // Append to spells.
-            else if (i.type === "spell") {
-                spells.push(i);
+
+            switch (i.type) {
+                case "item":
+                    gear.push(i);
+                    break;
+                case "feature":
+                    features.push(i);
+                    break;
+                case "spell":
+                    spells.push(i);
+                    break;
+                case "resource":
+                    resources.push(i);
+                    break;
             }
         }
 
@@ -125,6 +129,7 @@ export class WarlordsActorSheet extends ActorSheet {
         context.gear = gear;
         context.features = features;
         context.spells = spells;
+        context.resources = resources;
     }
 
     /* -------------------------------------------- */
@@ -153,6 +158,17 @@ export class WarlordsActorSheet extends ActorSheet {
             const item = this.actor.items.get(li.data("itemId"));
             item.delete();
             li.slideUp(200, () => this.render(false));
+        });
+
+        html.find(".item-resource-modifier").click((ev) => {
+            const target = $(ev.currentTarget);
+            const li = $(ev.currentTarget).parents(".item");
+            const item = this.actor.items.get(li.data("itemId"));
+
+            item.system.value += parseInt(target.data("amount"));
+            item.system.value = Math.max(item.system.value, 0);
+            item.system.value = Math.min(item.system.value, item.system.max);
+            this.render();
         });
 
         // Active Effect management

@@ -136,3 +136,15 @@
   float: left;
   text-align: center;
 }
+
+.item-resource-value {
+  flex: 0 0 100px;
+  display: flex;
+  flex-direction: row;
+    a {
+      font-size: 12px;
+      vertical-align: middle;
+      text-align: center;
+      margin: 0 6px;
+    }
+}
