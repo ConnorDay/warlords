@@ -58,6 +58,7 @@ export class WarlordsItemSheet extends ItemSheet {
                 }
             })
         }
+        context.rolls = itemData.collections.rolls;
         return context;
     }
 
@@ -69,7 +70,6 @@ export class WarlordsItemSheet extends ItemSheet {
 
         // Everything below here is only needed if the sheet is editable
         if (!this.isEditable) return;
-
         // Roll handlers, click handlers, etc. would go here.
         html.find(".resource-list").change((ev) => {
             const val = ev.currentTarget.value;
