@@ -69,7 +69,6 @@ export class WarlordsItem extends Item {
                 flavor: label,
                 content: `<p><b>Attack Roll: </b>[[${attackRoll.formula}]]</p><p><b>Damage Roll: </b>[[${damageRoll.formula}]]</p>`,
             });
-            return roll;
         }
     }
 }

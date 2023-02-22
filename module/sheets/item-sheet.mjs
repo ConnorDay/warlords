@@ -54,9 +54,12 @@ export class WarlordsItemSheet extends ItemSheet {
         if (actor) {
             actor.items.forEach((item) => {
                 if (item.type == "resource") {
-                    context.resources.push({item:item, selected:item.id == this.item.system.resource.id});
+                    context.resources.push({
+                        item: item,
+                        selected: item.id == this.item.system.resourceId,
+                    });
                 }
-            })
+            });
         }
         context.rolls = itemData.collections.rolls;
         return context;

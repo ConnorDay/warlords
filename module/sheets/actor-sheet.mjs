@@ -111,7 +111,9 @@ export class WarlordsActorSheet extends ActorSheet {
 
             switch (i.type) {
                 case "item":
-                    i.system.resource = this.actor.items.get(i.system.resourceId);
+                    i.system.resource = this.actor.items.get(
+                        i.system.resourceId
+                    );
                     gear.push(i);
                     break;
                 case "feature":
@@ -166,7 +168,7 @@ export class WarlordsActorSheet extends ActorSheet {
             const li = $(ev.currentTarget).parents(".item");
             const item = this.actor.items.get(li.data("itemId"));
             const sp = this.actor.system.spellPoints;
-            
+
             sp.value -= parseInt(target.data("amount"));
             sp.value = Math.max(sp.value, 0);
             sp.value = Math.min(sp.value, sp.max);
@@ -192,13 +194,14 @@ export class WarlordsActorSheet extends ActorSheet {
             const target = $(ev.currentTarget);
             const li = $(ev.currentTarget).parents(".item");
             const item = this.actor.items.get(li.data("itemId"));
-            console.log(item);
-            const resource = this.actor.items.get(item.system.resource.id);
-            console.log(resource);
+            const resource = this.actor.items.get(item.system.resourceId);
 
             resource.system.value += parseInt(target.data("amount"));
             resource.system.value = Math.max(resource.system.value, 0);
-            resource.system.value = Math.min(resource.system.value, resource.system.max);
+            resource.system.value = Math.min(
+                resource.system.value,
+                resource.system.max
+            );
 
             resource.update({ system: resource.system });
             this.render();
@@ -276,7 +279,6 @@ export class WarlordsActorSheet extends ActorSheet {
                 : "";
             if (dataset.ability !== undefined) {
                 const ability = this.actor.system.abilities[dataset.ability];
-                console.log(ability);
                 ability.aggregate = ability.value + ability.bonus;
             }
             let roll = new Roll(dataset.roll, this.actor.getRollData());

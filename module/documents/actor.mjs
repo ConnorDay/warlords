@@ -28,7 +28,6 @@ export class WarlordsActor extends Actor {
      * is queried and has a roll executed directly from it).
      */
     prepareDerivedData() {
-        console.log(this);
         const actorData = this;
         const systemData = actorData.system;
         const flags = actorData.flags.warlords || {};
