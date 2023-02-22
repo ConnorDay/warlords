@@ -111,6 +111,7 @@ export class WarlordsActorSheet extends ActorSheet {
 
             switch (i.type) {
                 case "item":
+                    i.system.resource = this.actor.items.get(i.system.resourceId);
                     gear.push(i);
                     break;
                 case "feature":
@@ -170,7 +171,7 @@ export class WarlordsActorSheet extends ActorSheet {
             sp.value = Math.max(sp.value, 0);
             sp.value = Math.min(sp.value, sp.max);
 
-            item.updateSource({ system: item.system });
+            item.update({ system: item.system });
             this.render();
         });
 
@@ -183,7 +184,23 @@ export class WarlordsActorSheet extends ActorSheet {
             item.system.value = Math.max(item.system.value, 0);
             item.system.value = Math.min(item.system.value, item.system.max);
 
-            item.updateSource({ system: item.system });
+            item.update({ system: item.system });
+            this.render();
+        });
+
+        html.find(".item-personal-resource-modifier").click((ev) => {
+            const target = $(ev.currentTarget);
+            const li = $(ev.currentTarget).parents(".item");
+            const item = this.actor.items.get(li.data("itemId"));
+            console.log(item);
+            const resource = this.actor.items.get(item.system.resource.id);
+            console.log(resource);
+
+            resource.system.value += parseInt(target.data("amount"));
+            resource.system.value = Math.max(resource.system.value, 0);
+            resource.system.value = Math.min(resource.system.value, resource.system.max);
+
+            resource.update({ system: resource.system });
             this.render();
         });
 

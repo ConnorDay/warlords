@@ -54,12 +54,25 @@
             rollData=rollData button=true owner=owner editable=editable}}
         </div>
 
-        {{!-- Attributes Tab --}}
-        <div class="tab attributes" data-group="primary" data-tab="attributes">
-            {{!-- As you add new fields, add them in here! --}}
-            <div class="resource">
-                {{>"systems/warlords/templates/item/parts/item-rolls.html"}}
-            </div>
+    {{!-- Attributes Tab --}}
+    <div class="tab attributes" data-group="primary" data-tab="attributes">
+      {{!-- As you add new fields, add them in here! --}}
+      <div class="resource">
+        <label class="resource-label">Roll Formula</label>
+        <input type="text" name="system.formula" value="{{system.formula}}" data-dtype="String"/>
+        <br>
+        {{>"systems/warlords/templates/item/parts/item-rolls.html"}}
+        <br>
+        <label class="resource-label">Resource</label>
+        <div class="key">
+          <select class="resource-list" name="resources">
+            <option value="">None</option>
+            {{#each resources as |item i|}}
+              <option value={{item.item.id}} {{#if item.selected}} selected {{/if}}>{{item.item.name}}</option>
+            {{/each}}
+          </select>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 </form>
