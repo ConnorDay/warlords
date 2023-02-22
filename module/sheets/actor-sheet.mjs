@@ -160,6 +160,20 @@ export class WarlordsActorSheet extends ActorSheet {
             li.slideUp(200, () => this.render(false));
         });
 
+        html.find(".spell-subtract-cost").click((ev) => {
+            const target = $(ev.currentTarget);
+            const li = $(ev.currentTarget).parents(".item");
+            const item = this.actor.items.get(li.data("itemId"));
+            const sp = this.actor.system.spellPoints;
+            
+            sp.value -= parseInt(target.data("amount"));
+            sp.value = Math.max(sp.value, 0);
+            sp.value = Math.min(sp.value, sp.max);
+
+            item.updateSource({ system: item.system });
+            this.render();
+        });
+
         html.find(".item-resource-modifier").click((ev) => {
             const target = $(ev.currentTarget);
             const li = $(ev.currentTarget).parents(".item");

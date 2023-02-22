@@ -12,10 +12,14 @@
     <div class="item-name flexrow">
       <div class="item-cost">
         {{#if item.system.spellCostSelf includeZero = true}}
-        <a class="item-cost-self">{{item.system.spellCostSelf}}</a>
+        <a class="item-cost-self spell-subtract-cost rollable" data-amount="{{item.system.spellCostSelf}}" data-roll-type="item">
+          {{item.system.spellCostSelf}}
+        </a>
         {{/if}}
         {{#if item.system.spellCostTarget includeZero = true}}
-        <a class="item-cost-target">{{item.system.spellCostTarget}}</a>
+        <a class="item-cost-target spell-subtract-cost rollable" data-amount="{{item.system.spellCostTarget}}" data-roll-type="item">
+          {{item.system.spellCostTarget}}
+        </a>
         {{/if}}
       </div>
       <div class="item-image">
