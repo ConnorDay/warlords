@@ -172,7 +172,7 @@
         }
     },
     "Item": {
-        "types": ["item", "feature", "spell"],
+        "types": ["item", "feature", "spell", "resource"],
         "templates": {
             "base": {
                 "description": ""
@@ -191,6 +191,11 @@
             "templates": ["base"],
             "spellCostSelf": null,
             "spellCostTarget": 0
+        },
+        "resource": {
+            "templates": ["base"],
+            "max": 0,
+            "value": 0
         }
     }
 }
