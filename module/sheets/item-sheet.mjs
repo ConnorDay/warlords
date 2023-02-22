@@ -50,7 +50,15 @@ export class WarlordsItemSheet extends ItemSheet {
         // Add the actor's data to context.data for easier access, as well as flags.
         context.system = itemData.system;
         context.flags = itemData.flags;
-
+        context.resources = [];
+        if (actor) {
+            actor.items.forEach((item) => {
+                if (item.type == "resource") {
+                    context.resources.push({item:item, selected:item.id == this.item.system.resourceId});
+                }
+            })
+        } 
+        console.log(context);
         return context;
     }
 
@@ -64,5 +72,11 @@ export class WarlordsItemSheet extends ItemSheet {
         if (!this.isEditable) return;
 
         // Roll handlers, click handlers, etc. would go here.
+        html.find(".resource-list").change((ev) => {
+            const val = ev.currentTarget.value;
+            this.item.system.resourceId = val;
+            this.item.updateSource({ system: this.item.system });
+            console.log(this.item);
+        });
     }
 }
