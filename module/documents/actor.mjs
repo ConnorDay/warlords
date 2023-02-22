@@ -82,7 +82,7 @@ export class WarlordsActor extends Actor {
         // formulas like `@str.mod + 4`.
         if (data.abilities) {
             for (let [k, v] of Object.entries(data.abilities)) {
-                data[k] = foundry.utils.deepClone(v);
+                data[k] = v.value + v.bonus;
             }
         }
 
@@ -90,6 +90,8 @@ export class WarlordsActor extends Actor {
         if (data.attributes.level) {
             data.lvl = data.attributes.level.value ?? 0;
         }
+
+        console.log(data);
     }
 
     /**
