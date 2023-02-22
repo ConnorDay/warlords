@@ -148,3 +148,11 @@
       margin: 0 6px;
     }
 }
+
+.item-roll-label {
+  flex: 0;
+  white-space: nowrap;
+}
+.item-roll-input {
+  flex-grow: 1;
+}
