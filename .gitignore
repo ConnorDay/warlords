@@ -1,6 +1,7 @@
 # IDE
 .idea/
 .vs/
+warlords.code-workspace
 
 # Node Modules
 node_modules/
