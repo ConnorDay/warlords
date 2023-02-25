@@ -1,211 +1,214 @@
 {
-    "Actor": {
-        "types": ["character", "npc"],
-        "templates": {
-            "base": {
-                "health": {
-                    "value": 10,
-                    "max": 10,
-                    "bonus": 0
-                },
-                "power": {
-                    "value": 5,
-                    "max": 5,
-                    "bonus": 0
-                },
-                "spellPoints": {
-                    "value": 0,
-                    "max": 0,
-                    "bonus": 0
-                },
-                "biography": "",
-                "attributes": {
-                    "level": {
-                        "value": 1
-                    }
-                },
-                "abilities": {
-                    "str": {
-                        "value": 0,
-                        "bonus": 0
-                    },
-                    "dex": {
-                        "value": 0,
-                        "bonus": 0
-                    },
-                    "con": {
-                        "value": 0,
-                        "bonus": 0
-                    },
-                    "int": {
-                        "value": 0,
-                        "bonus": 0
-                    },
-                    "wis": {
-                        "value": 0,
-                        "bonus": 0
-                    }
-                },
-                "saves": {
-                    "fort": {
-                        "value": 0,
-                        "ability": "con",
-                        "bonus": 0
-                    },
-                    "refl": {
-                        "value": 0,
-                        "ability": "dex",
-                        "bonus": 0
-                    },
-                    "will": {
-                        "value": 0,
-                        "ability": "wis",
-                        "bonus": 0
-                    }
-                },
-                "skills": {
-                    "acrobatics": {
-                        "ability": "dex",
-                        "ranks": 0,
-                        "bonus": 0
-                    },
-                    "alchemy": {
-                        "ability": "int",
-                        "ranks": 0,
-                        "bonus": 0
-                    },
-                    "animal_handling": {
-                        "ability": "wis",
-                        "ranks": 0,
-                        "bonus": 0
-                    },
-                    "arcana": {
-                        "ability": "int",
-                        "ranks": 0,
-                        "bonus": 0
-                    },
-                    "armaments": {
-                        "ability": "wis",
-                        "ranks": 0,
-                        "bonus": 0
-                    },
-                    "athletics": {
-                        "ability": "str",
-                        "ranks": 0,
-                        "bonus": 0
-                    },
-                    "concentration": {
-                        "ability": "con",
-                        "ranks": 0,
-                        "bonus": 0
-                    },
-                    "devices": {
-                        "ability": "int",
-                        "ranks": 0,
-                        "bonus": 0
-                    },
-                    "fraud": {
-                        "ability": "int",
-                        "ranks": 0,
-                        "bonus": 0
-                    },
-                    "history": {
-                        "ability": "int",
-                        "ranks": 0,
-                        "bonus": 0
-                    },
-                    "horsemanship": {
-                        "ability": "wis",
-                        "ranks": 0,
-                        "bonus": 0
-                    },
-                    "insight": {
-                        "ability": "wis",
-                        "ranks": 0,
-                        "bonus": 0
-                    },
-                    "legerdemain": {
-                        "ability": "dex",
-                        "ranks": 0,
-                        "bonus": 0
-                    },
-                    "local_knowledge": {
-                        "ability": "int",
-                        "ranks": 0,
-                        "bonus": 0
-                    },
-                    "medicine": {
-                        "ability": "wis",
-                        "ranks": 0,
-                        "bonus": 0
-                    },
-                    "perception": {
-                        "ability": "wis",
-                        "ranks": 0,
-                        "bonus": 0
-                    },
-                    "performance": {
-                        "ability": "wis",
-                        "ranks": 0,
-                        "bonus": 0
-                    },
-                    "spellcraft": {
-                        "ability": "int",
-                        "ranks": 0,
-                        "bonus": 0
-                    },
-                    "stealth": {
-                        "ability": "dex",
-                        "ranks": 0,
-                        "bonus": 0
-                    },
-                    "wildlore": {
-                        "ability": "int",
-                        "ranks": 0,
-                        "bonus": 0
-                    }
-                }
-            }
-        },
-        "character": {
-            "templates": ["base"],
-            "attack_bonus": 0
-        },
-        "npc": {
-            "templates": ["base"],
-            "cr": 0
-        }
-    },
-    "Item": {
-        "types": ["item", "feature", "spell", "resource"],
-        "templates": {
-            "base": {
-                "description": ""
-            }
-        },
-        "item": {
-            "templates": ["base"],
-            "quantity": 1,
-            "weight": 0,
-            "formula": "d20 + @str.mod + ceil(@lvl / 2)",
-            "resourceId": null,
-            "rolls": {
-                "attack": "",
-                "damage": ""
-            }
-        },
-        "feature": {
-            "templates": ["base"]
-        },
-        "spell": {
-            "templates": ["base"],
-            "spellCostSelf": null,
-            "spellCostTarget": 0
-        },
-        "resource": {
-            "templates": ["base"],
-            "max": 0,
-            "value": 0
-        }
-    }
+	"Actor": {
+		"types": ["character", "npc"],
+		"templates": {
+			"base": {
+				"health": {
+					"value": 10,
+					"max": 10,
+					"bonus": 0
+				},
+				"power": {
+					"value": 5,
+					"max": 5,
+					"bonus": 0
+				},
+				"spellPoints": {
+					"value": 0,
+					"max": 0,
+					"bonus": 0
+				},
+				"biography": "",
+				"attributes": {
+					"level": {
+						"value": 1
+					},
+					"attack_bonus": {
+						"value": 0,
+						"bonus": 0
+					}
+				},
+				"abilities": {
+					"str": {
+						"value": 0,
+						"bonus": 0
+					},
+					"dex": {
+						"value": 0,
+						"bonus": 0
+					},
+					"con": {
+						"value": 0,
+						"bonus": 0
+					},
+					"int": {
+						"value": 0,
+						"bonus": 0
+					},
+					"wis": {
+						"value": 0,
+						"bonus": 0
+					}
+				},
+				"saves": {
+					"fort": {
+						"value": 0,
+						"ability": "con",
+						"bonus": 0
+					},
+					"refl": {
+						"value": 0,
+						"ability": "dex",
+						"bonus": 0
+					},
+					"will": {
+						"value": 0,
+						"ability": "wis",
+						"bonus": 0
+					}
+				},
+				"skills": {
+					"acrobatics": {
+						"ability": "dex",
+						"ranks": 0,
+						"bonus": 0
+					},
+					"alchemy": {
+						"ability": "int",
+						"ranks": 0,
+						"bonus": 0
+					},
+					"animal_handling": {
+						"ability": "wis",
+						"ranks": 0,
+						"bonus": 0
+					},
+					"arcana": {
+						"ability": "int",
+						"ranks": 0,
+						"bonus": 0
+					},
+					"armaments": {
+						"ability": "wis",
+						"ranks": 0,
+						"bonus": 0
+					},
+					"athletics": {
+						"ability": "str",
+						"ranks": 0,
+						"bonus": 0
+					},
+					"concentration": {
+						"ability": "con",
+						"ranks": 0,
+						"bonus": 0
+					},
+					"devices": {
+						"ability": "int",
+						"ranks": 0,
+						"bonus": 0
+					},
+					"fraud": {
+						"ability": "int",
+						"ranks": 0,
+						"bonus": 0
+					},
+					"history": {
+						"ability": "int",
+						"ranks": 0,
+						"bonus": 0
+					},
+					"horsemanship": {
+						"ability": "wis",
+						"ranks": 0,
+						"bonus": 0
+					},
+					"insight": {
+						"ability": "wis",
+						"ranks": 0,
+						"bonus": 0
+					},
+					"legerdemain": {
+						"ability": "dex",
+						"ranks": 0,
+						"bonus": 0
+					},
+					"local_knowledge": {
+						"ability": "int",
+						"ranks": 0,
+						"bonus": 0
+					},
+					"medicine": {
+						"ability": "wis",
+						"ranks": 0,
+						"bonus": 0
+					},
+					"perception": {
+						"ability": "wis",
+						"ranks": 0,
+						"bonus": 0
+					},
+					"performance": {
+						"ability": "wis",
+						"ranks": 0,
+						"bonus": 0
+					},
+					"spellcraft": {
+						"ability": "int",
+						"ranks": 0,
+						"bonus": 0
+					},
+					"stealth": {
+						"ability": "dex",
+						"ranks": 0,
+						"bonus": 0
+					},
+					"wildlore": {
+						"ability": "int",
+						"ranks": 0,
+						"bonus": 0
+					}
+				}
+			}
+		},
+		"character": {
+			"templates": ["base"]
+		},
+		"npc": {
+			"templates": ["base"],
+			"cr": 0
+		}
+	},
+	"Item": {
+		"types": ["item", "feature", "spell", "resource"],
+		"templates": {
+			"base": {
+				"description": ""
+			}
+		},
+		"item": {
+			"templates": ["base"],
+			"quantity": 1,
+			"weight": 0,
+			"formula": "d20 + @str.mod + ceil(@lvl / 2)",
+			"resourceId": null,
+			"rolls": {
+				"attack": "",
+				"damage": ""
+			}
+		},
+		"feature": {
+			"templates": ["base"]
+		},
+		"spell": {
+			"templates": ["base"],
+			"spellCostSelf": null,
+			"spellCostTarget": 0
+		},
+		"resource": {
+			"templates": ["base"],
+			"max": 0,
+			"value": 0
+		}
+	}
 }
