@@ -84,5 +84,19 @@ export class WarlordsItemSheet extends ItemSheet {
             this.item.system.resourceId = val;
             this.item.update({ system: this.item.system });
         });
+
+        html.find(".check-display").change((ev) => {
+            const system = {...this.item.system}
+            system.display = !system.display;
+            this.item.update({ system: system });
+            this.render();
+        });
+
+        html.find(".check-consumable").change((ev) => {
+            const system = {...this.item.system}
+            system.consumable = !system.consumable;
+            this.item.update({ system: system });
+            this.render();
+        });
     }
 }

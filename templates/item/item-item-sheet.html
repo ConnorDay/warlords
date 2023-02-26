@@ -34,6 +34,28 @@
                         data-dtype="Number"
                     />
                 </div>
+                <div>
+                    <label>Display resources?</label>
+                    <input
+                        type="checkbox"
+                        class="check-display fit-checkbox"
+                        value="{{system.display}}"
+                        {{#if system.display}}
+                        checked
+                        {{/if}}
+                    />
+                </div>
+                <div>
+                    <label>Consumable?</label>
+                    <input
+                        type="checkbox"
+                        class="check-consumable fit-checkbox"
+                        value="{{system.consumable}}"
+                        {{#if system.consumable}}
+                        checked
+                        {{/if}}
+                    />
+                </div>
             </div>
         </div>
     </header>
