@@ -196,6 +196,8 @@ export class WarlordsActorSheet extends ActorSheet {
             const item = this.actor.items.get(li.data("itemId"));
             const resource = this.actor.items.get(item.system.resourceId);
 
+            if (!resource) return;
+
             resource.system.value += parseInt(target.data("amount"));
             resource.system.value = Math.max(resource.system.value, 0);
             resource.system.value = Math.min(
