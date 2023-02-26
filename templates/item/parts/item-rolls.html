@@ -1,27 +1,39 @@
-<label class="bold">Rolls</label>
 <ol class="items-list">
-    <li>
-        <div class="roll-grid">
-            <label class="item-roll-label">Attack Roll</label>
-            <input
-                type="text"
-                class=""
-                name="system.rolls.attack"
-                value="{{system.rolls.attack}}"
-                data-dtype="String"
-            />
+    <li class="items-header flexrow" data-effect-type="{{section.type}}">
+        <b class="item-name flexrow">Rolls</b>
+        <div class="item-controls">
+            <a class="item-control roll-create" title="Create Roll">
+                <i class="fas fa-plus"></i> Add Roll
+            </a>
         </div>
     </li>
+    {{#each system.rolls as |roll i|}}
     <li>
         <div class="roll-grid">
-            <label class="item-roll-label">Damage</label>
             <input
                 type="text"
-                class=""
-                name="system.rolls.damage"
-                value="{{system.rolls.damage}}"
+                class="roll-input"
                 data-dtype="String"
+                name="system.rolls.{{i}}.name"
+                value="{{roll.name}}"
             />
+            <input
+                type="text"
+                class="roll-input"
+                data-dtype="String"
+                name="system.rolls.{{i}}.formula"
+                value="{{roll.formula}}"
+            />
+            <div class="item-controls">
+                <a
+                    class="item-control roll-delete"
+                    title="Delete Roll"
+                    data-index="{{i}}"
+                >
+                    <i class="fas fa-trash"> </i>
+                </a>
+            </div>
         </div>
     </li>
+    {{/each}}
 </ol>

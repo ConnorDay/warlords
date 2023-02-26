@@ -61,7 +61,6 @@ export class WarlordsItemSheet extends ItemSheet {
                 }
             });
         }
-        context.rolls = itemData.collections.rolls;
         return context;
     }
 
@@ -83,6 +82,41 @@ export class WarlordsItemSheet extends ItemSheet {
             }
             this.item.system.resourceId = val;
             this.item.update({ system: this.item.system });
+        });
+
+        html.find(".roll-delete").click((ev) => {
+            const currentTarget = $(ev.currentTarget);
+            const index = currentTarget.data("index");
+
+            const system = { ...this.item.system };
+
+            const newRolls = {};
+            let counter = 0;
+            for (let i in system.rolls) {
+                i = parseInt(i);
+                if (i !== index) {
+                    console.log(i, index);
+                    newRolls[counter] = system.rolls[i];
+                    counter++;
+                }
+            }
+
+            system.rolls = null;
+            this.item.update({ system: system }).then(() => {
+                system.rolls = newRolls;
+                this.item.update({ system: system });
+            });
+        });
+
+        html.find(".roll-create").click((ev) => {
+            const system = { ...this.item.system };
+            let max = 0;
+            for (let i in system.rolls) {
+                i = parseInt(i);
+                max = Math.max(max, i);
+            }
+            system.rolls[max + 1] = { name: "", formula: "" };
+            this.item.update({ system: system });
         });
     }
 }
