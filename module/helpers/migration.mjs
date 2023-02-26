@@ -8,6 +8,9 @@ async function migrateItems() {
         const system = {...item.system};
         //No Migration for items yet
         if (item.type == "item") {
+            if (system.consumable == undefined) {
+                system.consumable = false;
+            }
             if (system.resource == undefined) {
                 system.resource = null;
             }
