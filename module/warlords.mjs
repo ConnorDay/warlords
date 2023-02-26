@@ -8,6 +8,7 @@ import { WarlordsEffectConfigSheet } from "./sheets/effect-config-sheet.mjs";
 // Import helper/utility classes and constants.
 import { preloadHandlebarsTemplates } from "./helpers/templates.mjs";
 import { WARLORDS } from "./helpers/config.mjs";
+import { migrate } from "./helpers/migration.mjs";
 
 /* -------------------------------------------- */
 /*  Init Hook                                   */
@@ -20,6 +21,7 @@ Hooks.once("init", async function () {
         WarlordsActor,
         WarlordsItem,
         rollItemMacro,
+        migrate,
     };
 
     // Add custom constants for configuration.
