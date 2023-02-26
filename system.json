@@ -1,36 +1,39 @@
 {
-    "id": "warlords",
-    "title": "Warlords",
-    "description": "",
-    "version": "1.2.0",
-    "compatibility": {
-        "minimum": 10,
-        "verified": "10.287",
-        "maximum": 10
-    },
-    "authors": [
-        {
-            "name": "ConRonJohnson"
-        }
-    ],
-    "esmodules": ["module/warlords.mjs"],
-    "styles": ["css/warlords.css"],
-    "scripts": [],
-    "packs": [],
-    "languages": [
-        {
-            "lang": "en",
-            "name": "English",
-            "path": "lang/en.json"
-        }
-    ],
-    "gridDistance": 5,
-    "gridUnits": "ft",
-    "primaryTokenAttribute": "health",
-    "secondaryTokenAttribute": "power",
-    "url": "",
-    "manifest": "",
-    "download": "",
-    "license": "LICENSE.txt",
-    "changelog": "CHANGELOG.md"
+	"id": "warlords",
+	"title": "Warlords",
+	"description": "",
+	"version": "1.2.0",
+	"compatibility": {
+		"minimum": 10,
+		"verified": "10.287",
+		"maximum": 10
+	},
+	"authors": [
+		{
+			"name": "ConRonJohnson"
+		},
+		{
+			"name": "OneOf99"
+		}
+	],
+	"esmodules": ["module/warlords.mjs"],
+	"styles": ["css/warlords.css"],
+	"scripts": [],
+	"packs": [],
+	"languages": [
+		{
+			"lang": "en",
+			"name": "English",
+			"path": "lang/en.json"
+		}
+	],
+	"gridDistance": 5,
+	"gridUnits": "ft",
+	"primaryTokenAttribute": "health",
+	"secondaryTokenAttribute": "power",
+	"url": "",
+	"manifest": "",
+	"download": "",
+	"license": "LICENSE.txt",
+	"changelog": "CHANGELOG.md"
 }

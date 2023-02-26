@@ -72,9 +72,11 @@ WARLORDS.activeEffectChanges = {
     "system.abilities.dex.bonus": "WARLORDS.AbilityDex",
     "system.abilities.con.bonus": "WARLORDS.AbilityCon",
     "system.abilities.int.bonus": "WARLORDS.AbilityInt",
+    "system.abilities.wis.bonus": "WARLORDS.AbilityWis",
     "system.saves.fort.bonus": "WARLORDS.SaveFort",
     "system.saves.refl.bonus": "WARLORDS.SaveRefl",
     "system.saves.will.bonus": "WARLORDS.SaveWill",
     "system.health.bonus": "WARLORDS.MaxHealth",
     "system.power.bonus": "WARLORDS.MaxPower",
+    "system.attributes.attack_bonus.bonus": "WARLORDS.AttackBonus",
 };
