@@ -35,17 +35,9 @@
                     />
                 </div>
                 <div>
-                    <label>Display resources?</label>
-                    <input
-                        type="checkbox"
-                        class="check-display fit-checkbox"
-                        value="{{system.display}}"
-                        {{#if system.display}}
-                        checked
-                        {{/if}}
-                    />
+                    {{!-- Empty cell --}}
                 </div>
-                <div>
+                <div align="right">
                     <label>Consumable?</label>
                     <input
                         type="checkbox"
@@ -66,7 +58,7 @@
             <div class="resource">
                 {{>"systems/warlords/templates/item/parts/item-rolls.html"}}
                 <br>
-                <label class="bold">Resource</label>
+                <label class="bold">Consumes</label>
                 <div class="key">
                 <select class="resource-list" name="resources">
                     <option value="">None</option>

@@ -189,10 +189,10 @@
 		"item": {
 			"templates": ["base"],
 			"quantity": 1,
-			"display": false,
 			"weight": 0,
 			"consumable": false,
 			"formula": "d20 + @str.mod + ceil(@lvl / 2)",
+			"resource": null,
 			"resourceId": null,
 			"rolls": {
 				"attack": "",
