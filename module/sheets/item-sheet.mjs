@@ -78,6 +78,7 @@ export class WarlordsItemSheet extends ItemSheet {
             const val = ev.currentTarget.value;
             if (val == "") {
                 this.item.system.resourceId = null;
+                this.item.update({ system: this.item.system });
                 return;
             }
             this.item.system.resourceId = val;
