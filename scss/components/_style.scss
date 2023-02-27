@@ -2,9 +2,22 @@
   font-weight: bold;
 }
 
+.fit-checkbox {
+  width: auto;
+  height: auto;
+}
+
 .roll-grid {
   display: grid;
   grid-template-columns: 25% auto 20px;
   text-align: center;
   align-items: center;
+}
+
+.item-ammo {
+  text-align: center;
+}
+
+.item-qty {
+  text-align: center;
 }

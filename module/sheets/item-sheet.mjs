@@ -51,16 +51,25 @@ export class WarlordsItemSheet extends ItemSheet {
         context.system = itemData.system;
         context.flags = itemData.flags;
         context.resources = [];
+        let rItems = [];
+        let rResources = [];
         if (actor) {
             actor.items.forEach((item) => {
-                if (item.type == "resource") {
-                    context.resources.push({
+                if ((item.type == "item" && item.system.consumable)) {
+                    rItems.push({
+                        item: item,
+                        selected: item.id == this.item.system.resourceId,
+                    });
+                } else if (item.type == "resource") {
+                    rResources.push({
                         item: item,
                         selected: item.id == this.item.system.resourceId,
                     });
                 }
             });
         }
+        context.resources = rItems.concat(rResources);
+        context.rolls = itemData.collections.rolls;
         return context;
     }
 
@@ -117,6 +126,13 @@ export class WarlordsItemSheet extends ItemSheet {
             }
             system.rolls[max + 1] = { name: "", formula: "" };
             this.item.update({ system: system });
+        });
+      
+        html.find(".check-consumable").change((ev) => {
+            const system = {...this.item.system}
+            system.consumable = !system.consumable;
+            this.item.update({ system: system });
+            this.render();
         });
     }
 }

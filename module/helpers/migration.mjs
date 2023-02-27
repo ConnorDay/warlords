@@ -6,7 +6,6 @@ export async function migrate() {
 async function migrateItems() {
     for (let item of game.items) {
         const system = { ...item.system };
-        //No Migration for items yet
 
         if (system.rolls && system.rolls.attack !== undefined) {
             const attack = system.rolls.attack;
@@ -18,8 +17,18 @@ async function migrateItems() {
                 1: { name: "Damage", formula: damage },
             };
         }
+      
+        if (item.type == "item") {
+            if (system.consumable == undefined) {
+                system.consumable = false;
+            }
+            if (system.resource == undefined) {
+                system.resource = null;
+            }
+        }
+      
+        await item.update( {system: system} )
 
-        await item.update({ system: system });
     }
 }
 
