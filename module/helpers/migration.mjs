@@ -7,17 +7,34 @@ async function migrateItems() {
     for (let item of game.items) {
         const system = { ...item.system };
 
-        if (system.rolls && system.rolls.attack !== undefined) {
+        if (system.rolls === undefined) {
+            system.rolls = {};
+        } else {
             const attack = system.rolls.attack;
             const damage = system.rolls.damage;
-            system.rolls = null;
-            await item.update({ system: system });
-            system.rolls = {
-                0: { name: "Attack Roll", formula: attack },
-                1: { name: "Damage", formula: damage },
-            };
+
+            if (attack !== undefined || damage !== undefined) {
+                ui.notification.info(
+                    `updating ${item.name} to have arbitrary rolls`
+                );
+                system.rolls = null;
+                await item.update({ system: system });
+
+                let counter = 0;
+                if (attack) {
+                    system.rolls[counter] = {
+                        name: "Attack Roll",
+                        formula: attack,
+                    };
+                    counter++;
+                }
+                if (damage) {
+                    system.rolls[counter] = { name: "Damage", formula: damage };
+                    counter++;
+                }
+            }
         }
-      
+
         if (item.type == "item") {
             if (system.consumable == undefined) {
                 system.consumable = false;
@@ -26,9 +43,8 @@ async function migrateItems() {
                 system.resource = null;
             }
         }
-      
-        await item.update( {system: system} )
 
+        await item.update({ system: system });
     }
 }
 
