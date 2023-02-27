@@ -1,31 +1,23 @@
 <ol class="items-list">
   <li class="flexrow items-header">
-    <div class="item-cost">Cost</div>
     <div class="item-name">Name</div>
-    <div class="item-formula">Description</div>
+    <div class="item-cost">Cost</div>
     <div class="item-controls">
-      <a class="item-control item-create" title="Create item" data-type="spell"><i class="fas fa-plus"></i> Add spell</a>
+      <a class="item-control item-create" title="Create Spell" data-type="spell"><i class="fas fa-plus"></i> Add spell</a>
     </div>
   </li>
   {{#each spells as |item i|}}
   <li class="item flexrow" data-item-id="{{item._id}}">
     <div class="item-name flexrow">
-      <div class="item-cost">
-        {{#if item.system.spellCostSelf includeZero = true}}
-        <a class="item-cost-self spell-subtract-cost rollable" data-amount="{{item.system.spellCostSelf}}" data-roll-type="item">
-          {{item.system.spellCostSelf}}
-        </a>
-        {{/if}}
-        {{#if item.system.spellCostTarget includeZero = true}}
-        <a class="item-cost-target spell-subtract-cost rollable" data-amount="{{item.system.spellCostTarget}}" data-roll-type="item">
-          {{item.system.spellCostTarget}}
-        </a>
-        {{/if}}
-      </div>
-      <div class="item-image">
-        <a class="rollable" data-roll-type="item"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/></a>
-      </div>
+        <div class="item-image">
+            <a class="rollable spell-subtract-cost" data-amount="{{item.system.spellCost}}" data-roll-type="item"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/></a>
+        </div>
       <h4>{{item.name}}</h4>
+    </div>
+    <div class="item-cost">
+        {{#if item.system.spellCost includeZero = true}}
+        {{item.system.spellCost}}
+        {{/if}}
     </div>
     <div class="item-controls">
       <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>

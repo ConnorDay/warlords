@@ -184,10 +184,13 @@
 		"templates": {
 			"base": {
 				"description": ""
+			},
+			"rollable": {
+				"rolls": {}
 			}
 		},
 		"item": {
-			"templates": ["base"],
+			"templates": ["base", "rollable"],
 			"quantity": 1,
 			"weight": 0,
 			"consumable": false,
@@ -199,9 +202,8 @@
 			"templates": ["base"]
 		},
 		"spell": {
-			"templates": ["base"],
-			"spellCostSelf": null,
-			"spellCostTarget": 0
+			"templates": ["base", "rollable"],
+			"spellCost": 0
 		},
 		"resource": {
 			"templates": ["base"],
