@@ -14,12 +14,6 @@ export class WarlordsItem extends Item {
 
     prepareDerivedData() {
         super.prepareDerivedData();
-
-        const system = { ...this.system };
-        if (system.rolls === undefined) {
-            system.rolls = new Array();
-            this.update({ system: system });
-        }
     }
 
     /**
