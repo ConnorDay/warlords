@@ -91,7 +91,9 @@ export class WarlordsActor extends Actor {
             data.lvl = data.attributes.level.value ?? 0;
         }
 
-        console.log(data);
+        if (data.attributes.attack_bonus) {
+            data.attack_bonus = data.attributes.attack_bonus.value + data.attributes.attack_bonus.bonus;
+        }
     }
 
     /**

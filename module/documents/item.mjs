@@ -58,8 +58,11 @@ export class WarlordsItem extends Item {
             const rollData = this.getRollData();
 
             // Invoke the roll and submit it to chat.
-            const attackRoll = new Roll(rollData.item.rolls.attack, rollData);
-            const damageRoll = new Roll(rollData.item.rolls.damage, rollData);
+            let content = "";
+            for (let i in rollData.item.rolls) {
+                const roll = rollData.item.rolls[i];
+                content += `<p><b>${roll.name}: </b>[[${roll.formula}]]</p>`;
+            }
 
             // If you need to store the value first, uncomment the next line.
             // let result = await roll.roll({async: true});
@@ -67,7 +70,7 @@ export class WarlordsItem extends Item {
                 speaker: speaker,
                 rollMode: rollMode,
                 flavor: label,
-                content: `<p><b>Attack Roll: </b>[[${attackRoll.formula}]]</p><p><b>Damage Roll: </b>[[${damageRoll.formula}]]</p>`,
+                content: content,
             });
         }
     }

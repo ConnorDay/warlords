@@ -51,16 +51,24 @@ export class WarlordsItemSheet extends ItemSheet {
         context.system = itemData.system;
         context.flags = itemData.flags;
         context.resources = [];
+        let rItems = [];
+        let rResources = [];
         if (actor) {
             actor.items.forEach((item) => {
-                if (item.type == "resource") {
-                    context.resources.push({
+                if ((item.type == "item" && item.system.consumable)) {
+                    rItems.push({
+                        item: item,
+                        selected: item.id == this.item.system.resourceId,
+                    });
+                } else if (item.type == "resource") {
+                    rResources.push({
                         item: item,
                         selected: item.id == this.item.system.resourceId,
                     });
                 }
             });
         }
+        context.resources = rItems.concat(rResources);
         context.rolls = itemData.collections.rolls;
         return context;
     }
@@ -78,10 +86,53 @@ export class WarlordsItemSheet extends ItemSheet {
             const val = ev.currentTarget.value;
             if (val == "") {
                 this.item.system.resourceId = null;
+                this.item.update({ system: this.item.system });
                 return;
             }
             this.item.system.resourceId = val;
             this.item.update({ system: this.item.system });
+        });
+
+        html.find(".roll-delete").click((ev) => {
+            const currentTarget = $(ev.currentTarget);
+            const index = currentTarget.data("index");
+
+            const system = { ...this.item.system };
+
+            const newRolls = {};
+            let counter = 0;
+            for (let i in system.rolls) {
+                i = parseInt(i);
+                if (i !== index) {
+                    console.log(i, index);
+                    newRolls[counter] = system.rolls[i];
+                    counter++;
+                }
+            }
+
+            system.rolls = null;
+            this.item.update({ system: system }).then(() => {
+                system.rolls = newRolls;
+                this.item.update({ system: system });
+            });
+        });
+
+        html.find(".roll-create").click((ev) => {
+            const system = { ...this.item.system };
+            let max = 0;
+            for (let i in system.rolls) {
+                i = parseInt(i);
+                max = Math.max(max, i);
+            }
+            system.rolls[max + 1] = { name: "", formula: "" };
+            this.item.update({ system: system });
+        });
+      
+        html.find(".check-consumable").change((ev) => {
+            const system = {...this.item.system}
+            system.consumable = !system.consumable;
+            this.item.update({ system: system });
+            this.render();
         });
     }
 }
