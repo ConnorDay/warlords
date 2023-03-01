@@ -8,6 +8,7 @@ import { WarlordsEffectConfigSheet } from "./sheets/effect-config-sheet.mjs";
 // Import helper/utility classes and constants.
 import { preloadHandlebarsTemplates } from "./helpers/templates.mjs";
 import { WARLORDS } from "./helpers/config.mjs";
+import { migrate } from "./helpers/migration.mjs";
 
 /* -------------------------------------------- */
 /*  Init Hook                                   */
@@ -20,6 +21,7 @@ Hooks.once("init", async function () {
         WarlordsActor,
         WarlordsItem,
         rollItemMacro,
+        migrate,
     };
 
     // Add custom constants for configuration.
@@ -97,7 +99,7 @@ Hooks.once("ready", async function () {
  * @param {number} slot     The hotbar slot to use
  * @returns {Promise}
  */
-async function createItemMacro(data, slot) {
+function createItemMacro(data, slot) {
     // First, determine if this is a valid owned item.
     if (data.type !== "Item") return;
     if (!data.uuid.includes("Actor.") && !data.uuid.includes("Token.")) {
@@ -106,23 +108,23 @@ async function createItemMacro(data, slot) {
         );
     }
     // If it is, retrieve it based on the uuid.
-    const item = await Item.fromDropData(data);
-
-    // Create the macro command using the uuid.
-    const command = `game.warlords.rollItemMacro("${data.uuid}");`;
-    let macro = game.macros.find(
-        (m) => m.name === item.name && m.command === command
-    );
-    if (!macro) {
-        macro = await Macro.create({
-            name: item.name,
-            type: "script",
-            img: item.img,
-            command: command,
-            flags: { "warlords.itemMacro": true },
-        });
-    }
-    game.user.assignHotbarMacro(macro, slot);
+    Item.fromDropData(data).then(async (item) => {
+        // Create the macro command using the uuid.
+        const command = `game.warlords.rollItemMacro("${data.uuid}");`;
+        let macro = game.macros.find(
+            (m) => m.name === item.name && m.command === command
+        );
+        if (!macro) {
+            macro = await Macro.create({
+                name: item.name,
+                type: "script",
+                img: item.img,
+                command: command,
+                flags: { "warlords.itemMacro": true },
+            });
+        }
+        game.user.assignHotbarMacro(macro, slot);
+    });
     return false;
 }
 
