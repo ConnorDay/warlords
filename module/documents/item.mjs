@@ -56,22 +56,25 @@ export class WarlordsItem extends Item {
 
         //Update the resource for the roll
         const resource = this.actor.items.get(item.system.resourceId);
-        if (!resource) return;
-
-        if (resource.type == "item") {
-            resource.system.quantity--;
-            resource.system.quantity = Math.max(resource.system.quantity, 0);
-        } else if (resource.type == "resource") {
-            resource.system.value--;
-            resource.system.value = Math.max(resource.system.value, 0);
-            resource.system.value = Math.min(
-                resource.system.value,
-                resource.system.max
-            );
-        } else {
-            console.error(`${item}`);
+        if (resource) {
+            if (resource.type == "item") {
+                resource.system.quantity--;
+                resource.system.quantity = Math.max(
+                    resource.system.quantity,
+                    0
+                );
+            } else if (resource.type == "resource") {
+                resource.system.value--;
+                resource.system.value = Math.max(resource.system.value, 0);
+                resource.system.value = Math.min(
+                    resource.system.value,
+                    resource.system.max
+                );
+            } else {
+                console.error(`${item}`);
+            }
+            resource.update({ system: resource.system });
         }
-        resource.update({ system: resource.system });
 
         // Create a roll and send a chat message from it.
         // Retrieve roll data.
