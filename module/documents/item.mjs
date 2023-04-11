@@ -76,6 +76,16 @@ export class WarlordsItem extends Item {
             resource.update({ system: resource.system });
         }
 
+        if (item.type === "spell") {
+            const sp = this.actor.system.spellPoints;
+
+            sp.value -= item.system.spellCost;
+            sp.value = Math.max(sp.value, 0);
+            sp.value = Math.min(sp.value, sp.max);
+
+            this.actor.update({ system: this.actor.system });
+        }
+
         // Create a roll and send a chat message from it.
         // Retrieve roll data.
         const rollData = this.getRollData();
