@@ -61,7 +61,9 @@ export class WarlordsItem extends Item {
             let content = "";
             for (let i in rollData.item.rolls) {
                 const roll = rollData.item.rolls[i];
-                content += `<p><b>${roll.name}: </b>[[${roll.formula}]]</p>`;
+                const r = new Roll(roll.formula, rollData);
+                await r.evaluate({ async: true });
+                content += `<p><b>${roll.name}: </b>${r.result} = ${r.total}</p>`;
             }
 
             // If you need to store the value first, uncomment the next line.
