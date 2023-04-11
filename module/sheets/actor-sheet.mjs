@@ -114,7 +114,9 @@ export class WarlordsActorSheet extends ActorSheet {
                     i.system.resource = this.actor.items.get(
                         i.system.resourceId
                     );
-                    if (i.system.resource) i.system.isResource = (i.system.resource.type == "resource");
+                    if (i.system.resource)
+                        i.system.isResource =
+                            i.system.resource.type == "resource";
                     gear.push(i);
                     break;
                 case "feature":
@@ -192,37 +194,22 @@ export class WarlordsActorSheet extends ActorSheet {
 
             if (resource.type == "item") {
                 resource.system.quantity += parseInt(target.data("amount"));
-                resource.system.quantity = Math.max(resource.system.quantity, 0);
-            }
-            else if (resource.type == "resource") {
+                resource.system.quantity = Math.max(
+                    resource.system.quantity,
+                    0
+                );
+            } else if (resource.type == "resource") {
                 resource.system.value += parseInt(target.data("amount"));
                 resource.system.value = Math.max(resource.system.value, 0);
-                resource.system.value = Math.min(resource.system.value, resource.system.max);
-            }
-            else {
+                resource.system.value = Math.min(
+                    resource.system.value,
+                    resource.system.max
+                );
+            } else {
                 console.error(`${item}`);
             }
             resource.update({ system: resource.system });
             item.update({ system: item.system });
-            this.render();
-        });
-
-        html.find(".item-personal-resource-modifier").click((ev) => {
-            const target = $(ev.currentTarget);
-            const li = $(ev.currentTarget).parents(".item");
-            const item = this.actor.items.get(li.data("itemId"));
-            const resource = this.actor.items.get(item.system.resourceId);
-
-            if (!resource) return;
-
-            resource.system.value += parseInt(target.data("amount"));
-            resource.system.value = Math.max(resource.system.value, 0);
-            resource.system.value = Math.min(
-                resource.system.value,
-                resource.system.max
-            );
-
-            resource.update({ system: resource.system });
             this.render();
         });
 
