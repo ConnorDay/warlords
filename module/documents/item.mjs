@@ -51,27 +51,59 @@ export class WarlordsItem extends Item {
                 flavor: label,
                 content: item.system.description ?? "",
             });
+            return;
         }
-        // Otherwise, create a roll and send a chat message from it.
-        else {
-            // Retrieve roll data.
-            const rollData = this.getRollData();
 
-            // Invoke the roll and submit it to chat.
-            let content = "";
-            for (let i in rollData.item.rolls) {
-                const roll = rollData.item.rolls[i];
-                content += `<p><b>${roll.name}: </b>[[${roll.formula}]]</p>`;
+        //Update the resource for the roll
+        const resource = this.actor.items.get(item.system.resourceId);
+        if (resource) {
+            if (resource.type == "item") {
+                resource.system.quantity--;
+                resource.system.quantity = Math.max(
+                    resource.system.quantity,
+                    0
+                );
+            } else if (resource.type == "resource") {
+                resource.system.value--;
+                resource.system.value = Math.max(resource.system.value, 0);
+                resource.system.value = Math.min(
+                    resource.system.value,
+                    resource.system.max
+                );
+            } else {
+                console.error(`${item}`);
             }
-
-            // If you need to store the value first, uncomment the next line.
-            // let result = await roll.roll({async: true});
-            ChatMessage.create({
-                speaker: speaker,
-                rollMode: rollMode,
-                flavor: label,
-                content: content,
-            });
+            resource.update({ system: resource.system });
         }
+
+        if (item.type === "spell") {
+            const sp = this.actor.system.spellPoints;
+
+            sp.value -= item.system.spellCost;
+            sp.value = Math.max(sp.value, 0);
+            sp.value = Math.min(sp.value, sp.max);
+
+            this.actor.update({ system: this.actor.system });
+        }
+
+        // Create a roll and send a chat message from it.
+        // Retrieve roll data.
+        const rollData = this.getRollData();
+
+        // Invoke the roll and submit it to chat.
+        let content = "";
+        for (let i in rollData.item.rolls) {
+            const roll = rollData.item.rolls[i];
+            content += `<p><b>${roll.name}: </b>[[${roll.formula}]]</p>`;
+        }
+
+        // If you need to store the value first, uncomment the next line.
+        // let result = await roll.roll({async: true});
+        ChatMessage.create({
+            speaker: speaker,
+            rollMode: rollMode,
+            flavor: label,
+            content: content,
+        });
     }
 }
