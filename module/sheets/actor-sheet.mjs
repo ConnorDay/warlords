@@ -182,7 +182,12 @@ export class WarlordsActorSheet extends ActorSheet {
             const target = $(ev.currentTarget);
             const li = $(ev.currentTarget).parents(".item");
             const item = this.actor.items.get(li.data("itemId"));
-            const resource = this.actor.items.get(item.system.resourceId);
+            let resource;
+            if (item.type === "resource") {
+                resource = item;
+            } else {
+                resource = this.actor.items.get(item.system.resourceId);
+            }
             if (!resource) return;
 
             if (resource.type == "item") {
