@@ -170,13 +170,17 @@ export class WarlordsActorSheet extends ActorSheet {
             const target = $(ev.currentTarget);
             const li = $(ev.currentTarget).parents(".item");
             const item = this.actor.items.get(li.data("itemId"));
-            const sp = this.actor.system.spellPoints;
 
+            const toUpdate = { spellPoints: {} };
+
+            const sp = this.actor.system.spellPoints;
             sp.value -= parseInt(target.data("amount"));
             sp.value = Math.max(sp.value, 0);
             sp.value = Math.min(sp.value, sp.max);
 
-            item.update({ system: item.system });
+            toUpdate.spellPoints.value = sp.value;
+
+            item.update({ system: toUpdate });
             this.render();
         });
 
@@ -184,33 +188,21 @@ export class WarlordsActorSheet extends ActorSheet {
             const target = $(ev.currentTarget);
             const li = $(ev.currentTarget).parents(".item");
             const item = this.actor.items.get(li.data("itemId"));
-            let resource;
-            if (item.type === "resource") {
-                resource = item;
-            } else {
-                resource = this.actor.items.get(item.system.resourceId);
+            if (item.type !== "resource") {
+                console.error(
+                    "please only use item-resource-modifier with resources"
+                );
+                return;
             }
-            if (!resource) return;
 
-            if (resource.type == "item") {
-                resource.system.quantity += parseInt(target.data("amount"));
-                resource.system.quantity = Math.max(
-                    resource.system.quantity,
-                    0
-                );
-            } else if (resource.type == "resource") {
-                resource.system.value += parseInt(target.data("amount"));
-                resource.system.value = Math.max(resource.system.value, 0);
-                resource.system.value = Math.min(
-                    resource.system.value,
-                    resource.system.max
-                );
-            } else {
-                console.error(`${item}`);
-            }
-            resource.update({ system: resource.system });
-            item.update({ system: item.system });
-            this.render();
+            const toUpdate = {};
+            let value = item.system.value;
+            value += parseInt(target.data("amount"));
+            value = Math.max(value, 0);
+            value = Math.min(value, item.system.max);
+
+            toUpdate.value = value;
+            item.update({ system: toUpdate });
         });
 
         // Active Effect management
