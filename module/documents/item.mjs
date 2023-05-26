@@ -56,34 +56,37 @@ export class WarlordsItem extends Item {
 
         //Update the resource for the roll
         const resource = this.actor.items.get(item.system.resourceId);
+        const toUpdate = {};
         if (resource) {
             if (resource.type == "item") {
-                resource.system.quantity--;
-                resource.system.quantity = Math.max(
-                    resource.system.quantity,
-                    0
-                );
+                let quantity = resource.system.quantity;
+                quantity--;
+                quantity = Math.max(quantity, 0);
+
+                toUpdate.quantity = quantity;
             } else if (resource.type == "resource") {
-                resource.system.value--;
-                resource.system.value = Math.max(resource.system.value, 0);
-                resource.system.value = Math.min(
-                    resource.system.value,
-                    resource.system.max
-                );
+                let value = resource.system.value;
+                value--;
+                value = Math.max(value, 0);
+                value = Math.min(value, resource.system.max);
             } else {
                 console.error(`${item}`);
             }
-            resource.update({ system: resource.system });
+            resource.update({ system: toUpdate });
         }
 
         if (item.type === "spell") {
             const sp = this.actor.system.spellPoints;
 
+            const toUpdate = { spellPoints: {} };
+
             sp.value -= item.system.spellCost;
             sp.value = Math.max(sp.value, 0);
             sp.value = Math.min(sp.value, sp.max);
 
-            this.actor.update({ system: this.actor.system });
+            toUpdate.spellPoints.value = sp.value;
+
+            this.actor.update({ system: toUpdate });
         }
 
         // Create a roll and send a chat message from it.
