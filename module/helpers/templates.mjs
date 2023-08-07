@@ -13,5 +13,6 @@ export const preloadHandlebarsTemplates = async function () {
         "systems/warlords/templates/actor/parts/actor-resources.html",
         "systems/warlords/templates/actor/parts/actor-skills.html",
         "systems/warlords/templates/item/parts/item-rolls.html",
+        "systems/warlords/templates/roll/chat-message.html",
     ]);
 };
