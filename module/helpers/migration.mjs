@@ -67,6 +67,28 @@ async function migrateActors() {
                     bonus: 0,
                 },
             };
+            toUpdate.status = {
+                vitality: {
+                    value: 12,
+                    max: 12,
+                    bonus: 0
+                },
+                toxicity: {
+                    value: 0,
+                    max: 6,
+                    bonus: 0
+                },
+                sanity: {
+                    value: 4,
+                    max: 4,
+                    bonus: 0
+                },
+                experience: {
+                    value: 0,
+                    max: 25,
+                    bonus: 0
+                }
+            }
         }
 
         await actor.update({ system: toUpdate });

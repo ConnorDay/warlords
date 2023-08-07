@@ -196,10 +196,67 @@
                 </aside>
 
                 {{!-- For the main features list, span the right two columns
-                --}}
+                w
                 <section class="main grid-span-2">
                     {{>
                     "systems/warlords/templates/actor/parts/actor-features.html"}}
+                </section>
+                --}}
+                <section class="main grid-span-2">
+                    <div class="grid grid-4col">
+                        <div class="status-field flex-group-center">
+                            <label for="system.status.vitality.value" class="bold">Vitality</label>
+                            <div class="item flexrow flex-group-center">
+                                <input
+                                    type="text"
+                                    class="status-margin"
+                                    name="system.status.vitality.value"
+                                    value="{{system.status.vitality.value}}"
+                                    data-dtype="Number"
+                                />
+                                <p class="status-margin status-max"> / {{system.status.vitality.max}}</p>
+                            </div>
+                        </div>
+                        <div class="status-field flex-group-center">
+                            <label for="system.status.toxicity.value" class="bold">Toxicity</label>
+                            <div class="item flexrow flex-group-center">
+                                <input
+                                    type="text"
+                                    class="status-margin"
+                                    name="system.status.toxicity.value"
+                                    value="{{system.status.toxicity.value}}"
+                                    data-dtype="Number"
+                                />
+                                <p class="status-margin status-max"> / {{system.status.toxicity.max}}</p>
+                            </div>
+                        </div>
+                        <div class="status-field flex-group-center">
+                            <label for="system.status.sanity.value" class="bold">Sanity</label>
+                            <div class="item flexrow flex-group-center">
+                                <input
+                                    type="text"
+                                    class="status-margin"
+                                    name="system.status.sanity.value"
+                                    value="{{system.status.sanity.value}}"
+                                    data-dtype="Number"
+                                />
+                                <p class="status-margin status-max"> / {{system.status.sanity.max}}</p>
+                            </div>
+                        </div>
+                        <div class="status-field flex-group-center">
+                            <label for="system.status.experience.value" class="bold">Experience</label>
+                            <div class="item flexrow flex-group-center">
+                                <input
+                                    type="text"
+                                    class="status-margin"
+                                    name="system.status.experience.value"
+                                    value="{{system.status.experience.value}}"
+                                    data-dtype="Number"
+                                />
+                                <p class="status-margin status-max"> / {{system.status.experience.max}}</p>
+                            </div>
+                        </div>
+                    </div>
                 </section>
             </section>
         </div>
