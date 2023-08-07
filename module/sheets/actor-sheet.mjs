@@ -114,7 +114,9 @@ export class WarlordsActorSheet extends ActorSheet {
                     i.system.resource = this.actor.items.get(
                         i.system.resourceId
                     );
-                    if (i.system.resource) i.system.isResource = (i.system.resource.type == "resource");
+                    if (i.system.resource)
+                        i.system.isResource =
+                            i.system.resource.type == "resource";
                     gear.push(i);
                     break;
                 case "feature":
@@ -168,13 +170,17 @@ export class WarlordsActorSheet extends ActorSheet {
             const target = $(ev.currentTarget);
             const li = $(ev.currentTarget).parents(".item");
             const item = this.actor.items.get(li.data("itemId"));
-            const sp = this.actor.system.spellPoints;
 
+            const toUpdate = { spellPoints: {} };
+
+            const sp = this.actor.system.spellPoints;
             sp.value -= parseInt(target.data("amount"));
             sp.value = Math.max(sp.value, 0);
             sp.value = Math.min(sp.value, sp.max);
 
-            item.update({ system: item.system });
+            toUpdate.spellPoints.value = sp.value;
+
+            item.update({ system: toUpdate });
             this.render();
         });
 
@@ -182,43 +188,21 @@ export class WarlordsActorSheet extends ActorSheet {
             const target = $(ev.currentTarget);
             const li = $(ev.currentTarget).parents(".item");
             const item = this.actor.items.get(li.data("itemId"));
-            const resource = this.actor.items.get(item.system.resourceId);
-            if (!resource) return;
-
-            if (resource.type == "item") {
-                resource.system.quantity += parseInt(target.data("amount"));
-                resource.system.quantity = Math.max(resource.system.quantity, 0);
+            if (item.type !== "resource") {
+                console.error(
+                    "please only use item-resource-modifier with resources"
+                );
+                return;
             }
-            else if (resource.type == "resource") {
-                resource.system.value += parseInt(target.data("amount"));
-                resource.system.value = Math.max(resource.system.value, 0);
-                resource.system.value = Math.min(resource.system.value, resource.system.max);
-            }
-            else {
-                console.error(`${item}`);
-            }
-            resource.update({ system: resource.system });
-            item.update({ system: item.system });
-            this.render();
-        });
 
-        html.find(".item-personal-resource-modifier").click((ev) => {
-            const target = $(ev.currentTarget);
-            const li = $(ev.currentTarget).parents(".item");
-            const item = this.actor.items.get(li.data("itemId"));
-            const resource = this.actor.items.get(item.system.resourceId);
+            const toUpdate = {};
+            let value = item.system.value;
+            value += parseInt(target.data("amount"));
+            value = Math.max(value, 0);
+            value = Math.min(value, item.system.max);
 
-            if (!resource) return;
-
-            resource.system.value += parseInt(target.data("amount"));
-            resource.system.value = Math.max(resource.system.value, 0);
-            resource.system.value = Math.min(
-                resource.system.value,
-                resource.system.max
-            );
-
-            resource.update({ system: resource.system });
-            this.render();
+            toUpdate.value = value;
+            item.update({ system: toUpdate });
         });
 
         // Active Effect management
