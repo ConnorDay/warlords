@@ -47,6 +47,9 @@ export class WarlordsActorSheet extends ActorSheet {
         context.system = actorData.system;
         context.flags = actorData.flags;
 
+        // Add roll data for TinyMCE editors.
+        context.rollData = context.actor.getRollData();
+
         // Prepare character data and items.
         if (actorData.type == "character") {
             this._prepareItems(context);
@@ -57,9 +60,6 @@ export class WarlordsActorSheet extends ActorSheet {
         if (actorData.type == "npc") {
             this._prepareItems(context);
         }
-
-        // Add roll data for TinyMCE editors.
-        context.rollData = context.actor.getRollData();
 
         // Prepare active effects
         context.effects = prepareActiveEffectCategories(this.actor.effects);
@@ -78,11 +78,26 @@ export class WarlordsActorSheet extends ActorSheet {
         // Handle ability scores.
         for (let [k, v] of Object.entries(context.system.abilities)) {
             v.label = game.i18n.localize(CONFIG.WARLORDS.abilities[k]) ?? k;
+            let color = null;
+            if ( v.bonus > 0 ){
+                color = "green";
+            } else if ( v.bonus < 0 ) {
+                color = "red";
+            }
+            v.color = color;
         }
 
         // Handle saves
         for (let [k, v] of Object.entries(context.system.saves)) {
             v.label = game.i18n.localize(CONFIG.WARLORDS.saves[k]) ?? k;
+            let color = null;
+            const aggregate = v.bonus + context.rollData[v.ability];
+            if ( aggregate > 0 ){
+                color = "green";
+            } else if ( aggregate < 0 ) {
+                color = "red";
+            }
+            v.color = color;
         }
 
         // Handle skills
@@ -219,13 +234,11 @@ export class WarlordsActorSheet extends ActorSheet {
             target.attr("name", target.data("toedit"));
             target.val(target.data("focus"));
             target.select();
-            console.log(target);
         });
         html.find(".change-on-edit").focusout((ev) => {
             const target = $(ev.currentTarget);
             target.attr("name", "");
             target.val(target.data("unfocus"));
-            console.log(target);
         });
 
         // Drag events for macros.
