@@ -63,7 +63,7 @@ async function migrateActors() {
         ) {
             toUpdate.attributes = {
                 attack_bonus: {
-                    value: system.attack_bonus,
+                    value: actor.system.attack_bonus,
                     bonus: 0,
                 },
             };
@@ -71,24 +71,24 @@ async function migrateActors() {
                 vitality: {
                     value: 12,
                     max: 12,
-                    bonus: 0
+                    bonus: 0,
                 },
                 toxicity: {
                     value: 0,
                     max: 6,
-                    bonus: 0
+                    bonus: 0,
                 },
                 sanity: {
                     value: 4,
                     max: 4,
-                    bonus: 0
+                    bonus: 0,
                 },
                 experience: {
                     value: 0,
                     max: 25,
-                    bonus: 0
-                }
-            }
+                    bonus: 0,
+                },
+            };
         }
 
         await actor.update({ system: toUpdate });
