@@ -21,3 +21,15 @@
 .item-qty {
   text-align: center;
 }
+
+.inp-fancy:not(:focus) {
+  border: none;
+  //background: inherit;
+  cursor: pointer;
+}
+
+.inp-fancy2:not(:focus) {
+  border: none;
+  //background: inherit;
+  cursor: pointer;
+}
