@@ -213,6 +213,21 @@ export class WarlordsActorSheet extends ActorSheet {
         // Rollable abilities.
         html.find(".rollable").click(this._onRoll.bind(this));
 
+        //
+        html.find(".change-on-edit").focusin((ev) => {
+            const target = $(ev.currentTarget);
+            target.attr("name", target.data("toedit"));
+            target.val(target.data("focus"));
+            target.select();
+            console.log(target);
+        });
+        html.find(".change-on-edit").focusout((ev) => {
+            const target = $(ev.currentTarget);
+            target.attr("name", "");
+            target.val(target.data("unfocus"));
+            console.log(target);
+        });
+
         // Drag events for macros.
         if (this.actor.isOwner) {
             let handler = (ev) => this._onDragStart(ev);

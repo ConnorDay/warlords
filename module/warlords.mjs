@@ -79,6 +79,25 @@ Handlebars.registerHelper("concat", function () {
     return outStr;
 });
 
+Handlebars.registerHelper("sum", function () {
+    let sum = 0;
+    for (let arg of arguments) {
+        if (typeof arg != "object") {
+            sum += Number(arg);
+        }
+    }
+    return String(sum);
+});
+
+Handlebars.registerHelper("index", function (obj, ...path) {
+    for (let key of path) {
+        if (typeof key === "string") {
+            obj = obj[key];
+        }
+    }
+    return obj;
+});
+
 Handlebars.registerHelper("toLowerCase", function (str) {
     return str.toLowerCase();
 });

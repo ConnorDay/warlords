@@ -158,7 +158,7 @@
                         {{#each system.abilities as |ability key|}}
                         <div class="ability flexrow flex-group-center">
                             <label
-                                for="system.abilities.{{key}}.value"
+                                for="{{key}}.value"
                                 class="bold rollable flexlarge align-left"
                                 data-type="ability"
                                 data-roll="d20+@abilities.{{key}}.value+@abilities.{{key}}.bonus"
@@ -167,14 +167,14 @@
                             >
                             <input
                                 type="text"
-                                class="inp-fancy"
-                                name="system.abilities.{{key}}.value"
-                                value="{{ability.value}}"
+                                name="{{key.value}}"
+                                class="inp-fancy change-on-edit"
+                                value="{{sum ability.value ability.bonus}}"
+                                data-toedit="system.abilities.{{key}}.value"
+                                data-focus="{{ability.value}}"
+                                data-unfocus="{{sum ability.value ability.bonus}}"
                                 data-dtype="Number"
                             />
-                            <p name="system.abilities.{{key}}.bonus">
-                                {{ability.bonus}}
-                            </p>
                         </div>
                         {{/each}}
 
@@ -183,7 +183,7 @@
                         {{#each system.saves as |save key|}}
                         <div class="ability flexrow flex-group-center">
                             <label
-                                for="system.saves.{{key}}.value"
+                                for="{{key}}.value"
                                 class="bold rollable flexlarge align-left"
                                 data-type="saving throw"
                                 data-ability="{{save.ability}}"
@@ -193,14 +193,14 @@
                             >
                             <input
                                 type="text"
-                                class="inp-fancy"
-                                name="system.saves.{{key}}.value"
-                                value="{{save.value}}"
+                                name="{{key.value}}"
+                                class="inp-fancy change-on-edit"
+                                data-toedit="system.saves.{{key}}.value"
+                                value="{{sum save.value save.bonus (index .. "rollData" save.ability)}}"
+                                data-focus="{{save.value}}"
+                                data-unfocus="{{sum save.value save.bonus (index .. "rollData" save.ability)}}"
                                 data-dtype="Number"
                             />
-                            <p name="system.saves.{{key}}.bonus">
-                                {{save.bonus}}
-                            </p>
                         </div>
                         {{/each}}
                     </div>
