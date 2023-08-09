@@ -13,6 +13,7 @@
             <h1 class="charname">
                 <input
                     name="name"
+                    class="inp-fancy"
                     type="text"
                     value="{{actor.name}}"
                     placeholder="Name"
@@ -34,6 +35,7 @@
                     >
                         <input
                             type="text"
+                            class="inp-fancy"
                             name="system.health.value"
                             value="{{system.health.value}}"
                             data-dtype="Number"
@@ -41,6 +43,7 @@
                         <span> / </span>
                         <input
                             type="text"
+                            class="inp-fancy"
                             name="system.health.max"
                             value="{{system.health.max}}"
                             data-dtype="Number"
@@ -57,6 +60,7 @@
                     >
                         <input
                             type="text"
+                            class="inp-fancy"
                             name="system.power.value"
                             value="{{system.power.value}}"
                             data-dtype="Number"
@@ -64,6 +68,7 @@
                         <span> / </span>
                         <input
                             type="text"
+                            class="inp-fancy"
                             name="system.power.max"
                             value="{{system.power.max}}"
                             data-dtype="Number"
@@ -78,6 +83,7 @@
                     >
                         <input
                             type="text"
+                            class="inp-fancy"
                             name="system.spellPoints.value"
                             value="{{system.spellPoints.value}}"
                             data-dtype="Number"
@@ -85,6 +91,7 @@
                         <span> / </span>
                         <input
                             type="text"
+                            class="inp-fancy"
                             name="system.spellPoints.max"
                             value="{{system.spellPoints.max}}"
                             data-dtype="Number"
@@ -96,6 +103,7 @@
                     <label for="system.attributes.attack_bonus.value" class="bold">Attack Bonus</label>
                     <input
                         type="text"
+                        class="inp-fancy"
                         name="system.attributes.attack_bonus.value"
                         value="{{system.attributes.attack_bonus.value}}"
                         data-dtype="Number"
@@ -113,6 +121,7 @@
                     >
                         <input
                             type="text"
+                            class="inp-fancy"
                             name="system.attributes.level.value"
                             value="{{system.attributes.level.value}}"
                             data-dtype="Number"
@@ -158,6 +167,7 @@
                             >
                             <input
                                 type="text"
+                                class="inp-fancy"
                                 name="system.abilities.{{key}}.value"
                                 value="{{ability.value}}"
                                 data-dtype="Number"
@@ -183,6 +193,7 @@
                             >
                             <input
                                 type="text"
+                                class="inp-fancy"
                                 name="system.saves.{{key}}.value"
                                 value="{{save.value}}"
                                 data-dtype="Number"
@@ -196,10 +207,67 @@
                 </aside>
 
                 {{!-- For the main features list, span the right two columns
-                --}}
+                w
                 <section class="main grid-span-2">
                     {{>
                     "systems/warlords/templates/actor/parts/actor-features.html"}}
+                </section>
+                --}}
+                <section class="main grid-span-2">
+                    <div class="grid grid-4col">
+                        <div class="status-field flex-group-center">
+                            <label for="system.status.vitality.value" class="bold">Vitality</label>
+                            <div class="item flexrow flex-group-center">
+                                <input
+                                    type="text"
+                                    class="status-margin inp-fancy"
+                                    name="system.status.vitality.value"
+                                    value="{{system.status.vitality.value}}"
+                                    data-dtype="Number"
+                                />
+                                <p class="status-margin status-max"> / {{system.status.vitality.max}}</p>
+                            </div>
+                        </div>
+                        <div class="status-field flex-group-center">
+                            <label for="system.status.toxicity.value" class="bold">Toxicity</label>
+                            <div class="item flexrow flex-group-center">
+                                <input
+                                    type="text"
+                                    class="status-margin inp-fancy"
+                                    name="system.status.toxicity.value"
+                                    value="{{system.status.toxicity.value}}"
+                                    data-dtype="Number"
+                                />
+                                <p class="status-margin status-max"> / {{system.status.toxicity.max}}</p>
+                            </div>
+                        </div>
+                        <div class="status-field flex-group-center">
+                            <label for="system.status.sanity.value" class="bold">Sanity</label>
+                            <div class="item flexrow flex-group-center">
+                                <input
+                                    type="text"
+                                    class="status-margin inp-fancy"
+                                    name="system.status.sanity.value"
+                                    value="{{system.status.sanity.value}}"
+                                    data-dtype="Number"
+                                />
+                                <p class="status-margin status-max"> / {{system.status.sanity.max}}</p>
+                            </div>
+                        </div>
+                        <div class="status-field flex-group-center">
+                            <label for="system.status.experience.value" class="bold">Experience</label>
+                            <div class="item flexrow flex-group-center">
+                                <input
+                                    type="text"
+                                    class="status-margin inp-fancy"
+                                    name="system.status.experience.value"
+                                    value="{{system.status.experience.value}}"
+                                    data-dtype="Number"
+                                />
+                                <p class="status-margin status-max"> / {{system.status.experience.max}}</p>
+                            </div>
+                        </div>
+                    </div>
                 </section>
             </section>
         </div>

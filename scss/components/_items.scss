@@ -157,3 +157,15 @@
 .item-roll-input {
   flex-grow: 1;
 }
+
+.status-margin {
+  margin: 5%;
+}
+
+.status-max {
+  text-align: center;
+}
+
+.status-field {
+  border: 1px solid var(--color-text-light-primary);
+}

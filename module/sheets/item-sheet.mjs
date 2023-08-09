@@ -55,7 +55,7 @@ export class WarlordsItemSheet extends ItemSheet {
         let rResources = [];
         if (actor) {
             actor.items.forEach((item) => {
-                if ((item.type == "item" && item.system.consumable)) {
+                if (item.type == "item" && item.system.consumable) {
                     rItems.push({
                         item: item,
                         selected: item.id == this.item.system.resourceId,
@@ -83,56 +83,52 @@ export class WarlordsItemSheet extends ItemSheet {
         if (!this.isEditable) return;
         // Roll handlers, click handlers, etc. would go here.
         html.find(".resource-list").change((ev) => {
-            const val = ev.currentTarget.value;
-            if (val == "") {
-                this.item.system.resourceId = null;
-                this.item.update({ system: this.item.system });
-                return;
+            let val = ev.currentTarget.value;
+            if (val === "") {
+                val = null;
             }
             this.item.system.resourceId = val;
-            this.item.update({ system: this.item.system });
+            this.item.update({ system: { resourceId: val } });
         });
 
         html.find(".roll-delete").click((ev) => {
             const currentTarget = $(ev.currentTarget);
             const index = currentTarget.data("index");
 
-            const system = { ...this.item.system };
+            const toUpdate = {};
 
             const newRolls = {};
             let counter = 0;
-            for (let i in system.rolls) {
+            for (let i in this.item.system.rolls) {
                 i = parseInt(i);
                 if (i !== index) {
                     console.log(i, index);
-                    newRolls[counter] = system.rolls[i];
+                    newRolls[counter] = this.item.system.rolls[i];
                     counter++;
                 }
             }
 
-            system.rolls = null;
-            this.item.update({ system: system }).then(() => {
-                system.rolls = newRolls;
-                this.item.update({ system: system });
+            toUpdate.rolls = null;
+            this.item.update({ system: toUpdate }).then(() => {
+                toUpdate.rolls = newRolls;
+                this.item.update({ system: toUpdate });
             });
         });
 
         html.find(".roll-create").click((ev) => {
-            const system = { ...this.item.system };
+            const toUpdate = { rolls: {} };
             let max = 0;
-            for (let i in system.rolls) {
+            for (let i in this.item.system.rolls) {
                 i = parseInt(i);
                 max = Math.max(max, i);
             }
-            system.rolls[max + 1] = { name: "", formula: "" };
-            this.item.update({ system: system });
+            toUpdate.rolls[max + 1] = { name: "", formula: "" };
+            this.item.update({ system: toUpdate });
         });
-      
+
         html.find(".check-consumable").change((ev) => {
-            const system = {...this.item.system}
-            system.consumable = !system.consumable;
-            this.item.update({ system: system });
-            this.render();
+            const consumable = this.item.system.consumable;
+            this.item.update({ system: { consumable: !consumable } });
         });
     }
 }
