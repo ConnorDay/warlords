@@ -1,3 +1,4 @@
+import { WarlordsRoll } from "./roll.mjs";
 /**
  * Extend the basic Item with some very simple modifications.
  * @extends {Item}
@@ -43,6 +44,44 @@ export class WarlordsItem extends Item {
         const rollMode = game.settings.get("core", "rollMode");
         const label = `[${item.type}] ${item.name}`;
 
+        //Update the resource for the roll
+        const resource = this.actor.items.get(item.system.resourceId);
+        const toUpdate = {};
+        if (resource) {
+            if (resource.type == "item") {
+                let quantity = resource.system.quantity;
+                quantity--;
+                quantity = Math.max(quantity, 0);
+
+                toUpdate.quantity = quantity;
+            } else if (resource.type == "resource") {
+                let value = resource.system.value;
+                value--;
+                value = Math.max(value, 0);
+                value = Math.min(value, resource.system.max);
+            } else {
+                console.error(`${item}`);
+            }
+            resource.update({ system: toUpdate });
+        }
+
+        if (item.type === "spell") {
+            const sp = this.actor.system.spellPoints;
+
+            const toUpdate = { spellPoints: {} };
+
+            sp.value -= item.system.spellCost;
+            sp.value = Math.max(sp.value, 0);
+            sp.value = Math.min(sp.value, sp.max);
+
+            toUpdate.spellPoints.value = sp.value;
+
+            this.actor.update({ system: toUpdate });
+        }
+
+        // Create a roll and send a chat message from it.
+        // Retrieve roll data.
+        const rollData = this.getRollData();
         // If there's no roll data, send a chat message.
         if (!this.system.rolls) {
             ChatMessage.create({
@@ -54,48 +93,28 @@ export class WarlordsItem extends Item {
             return;
         }
 
-        //Update the resource for the roll
-        const resource = this.actor.items.get(item.system.resourceId);
-        if (resource) {
-            if (resource.type == "item") {
-                resource.system.quantity--;
-                resource.system.quantity = Math.max(
-                    resource.system.quantity,
-                    0
-                );
-            } else if (resource.type == "resource") {
-                resource.system.value--;
-                resource.system.value = Math.max(resource.system.value, 0);
-                resource.system.value = Math.min(
-                    resource.system.value,
-                    resource.system.max
-                );
-            } else {
-                console.error(`${item}`);
-            }
-            resource.update({ system: resource.system });
-        }
-
-        if (item.type === "spell") {
-            const sp = this.actor.system.spellPoints;
-
-            sp.value -= item.system.spellCost;
-            sp.value = Math.max(sp.value, 0);
-            sp.value = Math.min(sp.value, sp.max);
-
-            this.actor.update({ system: this.actor.system });
-        }
-
-        // Create a roll and send a chat message from it.
-        // Retrieve roll data.
-        const rollData = this.getRollData();
-
         // Invoke the roll and submit it to chat.
         let content = "";
+        const rolls = [];
         for (let i in rollData.item.rolls) {
             const roll = rollData.item.rolls[i];
-            content += `<p><b>${roll.name}: </b>[[${roll.formula}]]</p>`;
+            const data = {
+                ...rollData,
+                name: roll.name,
+            };
+            const r = new WarlordsRoll(roll.formula, data);
+            await r.evaluate({ async: true });
+            content += await r.render();
+            rolls.push(r);
         }
+        ChatMessage.create({
+            speaker: speaker,
+            rollMode: rollMode,
+            flavor: label,
+            sound: CONFIG.sounds.dice,
+            content: content,
+            rolls: rolls,
+        });
 
         // If you need to store the value first, uncomment the next line.
         // let result = await roll.roll({async: true});

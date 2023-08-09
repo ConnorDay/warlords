@@ -1,6 +1,7 @@
 // Import document classes.
 import { WarlordsActor } from "./documents/actor.mjs";
 import { WarlordsItem } from "./documents/item.mjs";
+import { WarlordsRoll } from "./documents/roll.mjs";
 // Import sheet classes.
 import { WarlordsActorSheet } from "./sheets/actor-sheet.mjs";
 import { WarlordsItemSheet } from "./sheets/item-sheet.mjs";
@@ -20,6 +21,7 @@ Hooks.once("init", async function () {
     game.warlords = {
         WarlordsActor,
         WarlordsItem,
+        WarlordsRoll,
         rollItemMacro,
         migrate,
     };
@@ -55,6 +57,8 @@ Hooks.once("init", async function () {
     Items.registerSheet("warlords", WarlordsItemSheet, {
         makeDefault: true,
     });
+
+    CONFIG.Dice.rolls.push(WarlordsRoll);
 
     // Preload Handlebars templates.
     return preloadHandlebarsTemplates();
